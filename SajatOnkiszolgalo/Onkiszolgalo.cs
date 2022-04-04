@@ -1,18 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using MySql.Data;
-using BunifuAnimatorNS;
-using Bunifu;
-using System.Text.RegularExpressions;
 using ZXing;
 
 namespace SajatOnkiszolgalo
@@ -33,6 +24,7 @@ namespace SajatOnkiszolgalo
         public int kivalasztottTermek = -1;
         public string kivalasztottNev = "";
         string dolgozoNev = "";
+        string eleresiUtvonal = Path.GetDirectoryName(Application.ExecutablePath);
         frmDolgozo dolgozo;
 
         public Onkiszolgalo()
@@ -46,7 +38,7 @@ namespace SajatOnkiszolgalo
             dolgozoi.btnEngedely.Enabled = false;
             lblTermek.Text = "";
             pbTermek.Image = null;
-
+            
 
             Random randomKod = new Random();
             randomSzam = Convert.ToInt64($"{2660}{randomKod.Next(11111, 99999)}");
@@ -195,6 +187,7 @@ namespace SajatOnkiszolgalo
         {
             try
             {
+                adatbazis.Conn.Close();
                 adatbazis.Conn.Open();
                 string sqlDolgozo = $"SELECT dolgozok.nev, dolgozok.id FROM dolgozok WHERE dolgozok.aktiv = '1';";
                 var parancsDolgozo = new MySqlCommand(sqlDolgozo, adatbazis.Conn);
@@ -240,7 +233,7 @@ namespace SajatOnkiszolgalo
                     double jelenlegiMennyiseg = olvasoJelenlegi.GetDouble(2);
                     string jelenlegiMertekegyseg = olvasoJelenlegi.GetString(3);
                     lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
-                    pbTermek.Image = Image.FromFile($@"C:\Users\nyb15KOZÁKL\Desktop\SajatOnkiszolgalo\SajatOnkiszolgalo\kepek\{jelenlegiNev}.jpg");
+                    pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
                     adatbazis.Conn.Close();
                     adatbazis.Conn.Open();
                     string sqlNemAktiv = $"UPDATE `vasarlok` SET `aktiv` = '0' WHERE `vasarlok`.`id` = {vasarloID};";
@@ -248,6 +241,7 @@ namespace SajatOnkiszolgalo
                     var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
                     adatbazis.Conn.Close();
                 }
+                adatbazis.Conn.Close();
             }
             catch (Exception ex)
             {
@@ -295,6 +289,7 @@ namespace SajatOnkiszolgalo
                         lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
                     }
                 }
+                adatbazis.Conn.Close();
             }
             catch (Exception ex)
             {
@@ -380,7 +375,7 @@ namespace SajatOnkiszolgalo
                     string jelenlegiMertekegyseg = olvasoJelenlegi.GetString(2);
                     vasarloID = olvasoJelenlegi.GetInt32(3);
                     lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
-                    pbTermek.Image = Image.FromFile($@"C:\Users\nyb15KOZÁKL\Desktop\SajatOnkiszolgalo\SajatOnkiszolgalo\kepek\{jelenlegiNev}.jpg");
+                    pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
                     adatbazis.Conn.Close();
                 }
                 adatbazis.Conn.Close();
@@ -414,6 +409,7 @@ namespace SajatOnkiszolgalo
 
         private void btnTermekek_Click(object sender, EventArgs e)
         {
+            AdatbazisEllenorzes.Enabled = false;
             Termekek frmTermekek = new Termekek(adatbazis);
             frmTermekek.ShowDialog();
         }
