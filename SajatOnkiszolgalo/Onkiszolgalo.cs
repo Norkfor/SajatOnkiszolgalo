@@ -410,7 +410,7 @@ namespace SajatOnkiszolgalo
         private void btnTermekek_Click(object sender, EventArgs e)
         {
             AdatbazisEllenorzes.Enabled = false;
-            Termekek frmTermekek = new Termekek(adatbazis);
+            Termekek frmTermekek = new Termekek(adatbazis, this);
             frmTermekek.ShowDialog();
         }
 
