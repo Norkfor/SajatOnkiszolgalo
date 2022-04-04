@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vonalkodolvaso.MainPage"
+             BackgroundColor="#1a252f"
+             Title="Beolvasó az önkiszolgálóhoz">
+
+    <StackLayout Spacing="0" VerticalOptions="CenterAndExpand" BackgroundColor="White">
+        <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="False" x:Name="szovegresz">
+            <Label x:Name="szoveg" TextColor="OrangeRed" FontSize="Large"></Label>
+        </Frame>
+        <Frame>
+            
+            <Label TextColor="Black"  FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">1. Kérlek olvasd be az önkiszolgálón lévő kódot. (A kód az önkiszolgáló jobb oldalán felül megtalálható)</Label>
+        </Frame>
+        <Frame>
+            <Label TextColor="Black" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">2. Ha beolvastad az önkiszolgálón lévő kódot, akkor lehetőséged nyílik a termékek beolvasásához.</Label>
+        </Frame>
+        <Frame VerticalOptions="End" HorizontalOptions="FillAndExpand">
+            <Button x:Name="Beolvas" BackgroundColor="#1a252f" HeightRequest="80" FontSize="Large" Text="Beolvasás" Clicked="Button_Clicked"></Button>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>
