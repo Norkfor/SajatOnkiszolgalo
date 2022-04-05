@@ -41,7 +41,8 @@ namespace SajatOnkiszolgalo
             dolgozoi.btnEngedely.Enabled = false;
             lblTermek.Text = "";
             pbTermek.Image = null;
-            
+
+
 
             Random randomKod = new Random();
             randomSzam = Convert.ToInt64($"{2660}{randomKod.Next(11111, 99999)}");
@@ -312,6 +313,7 @@ namespace SajatOnkiszolgalo
                             lbNev.Items.Add(nev);
                             lbAr.Items.Add($"{(ara * darab):N0}Ft");
                             osszesen += ara * darab;
+                            btnFizetes.Enabled = true;
                         }
                         else
                         {
@@ -324,7 +326,7 @@ namespace SajatOnkiszolgalo
                             lbNev.Items.Add(nev);
                             lbAr.Items.Add($"{(ara * darab):N0}Ft");
                             osszesen += ara * darab;
-                            
+                            btnFizetes.Enabled = true;
                         }
                         lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
 
@@ -486,6 +488,12 @@ namespace SajatOnkiszolgalo
             lbNev.SelectedIndex = lbNev.Items.Count-1;
             kivalasztottNev = lbNev.SelectedItem.ToString();
             JelenlegiTermekBeallitas();
+        }
+
+        private void btnFizetes_Click(object sender, EventArgs e)
+        {
+            Osszegzes OsszegzesForm = new Osszegzes(this);
+            OsszegzesForm.ShowDialog();
         }
     }
 }

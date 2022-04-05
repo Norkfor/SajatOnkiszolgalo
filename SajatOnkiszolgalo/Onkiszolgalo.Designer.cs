@@ -32,10 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Onkiszolgalo));
             this.tlpFent = new System.Windows.Forms.TableLayoutPanel();
             this.btnSegitseg = new Guna.UI2.WinForms.Guna2Button();
-            this.btnMagyar = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAngol = new Guna.UI2.WinForms.Guna2Button();
             this.lblIdo = new System.Windows.Forms.Label();
-            this.pbVonalkod = new System.Windows.Forms.PictureBox();
             this.Ido = new System.Windows.Forms.Timer(this.components);
             this.lblTetelek = new System.Windows.Forms.Label();
             this.tlpBal = new System.Windows.Forms.TableLayoutPanel();
@@ -49,7 +46,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTermek = new System.Windows.Forms.Label();
-            this.pbTermek = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.tlpTermekTorles = new System.Windows.Forms.TableLayoutPanel();
             this.btnTermekTorlese = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -58,18 +54,22 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lbAr = new System.Windows.Forms.ListBox();
             this.AdatbazisEllenorzes = new System.Windows.Forms.Timer(this.components);
+            this.pbTermek = new Bunifu.UI.WinForms.BunifuPictureBox();
+            this.btnMagyar = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAngol = new Guna.UI2.WinForms.Guna2Button();
+            this.pbVonalkod = new System.Windows.Forms.PictureBox();
             this.tlpFent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVonalkod)).BeginInit();
             this.tlpBal.SuspendLayout();
             this.tlpLent.SuspendLayout();
             this.tlpJobb.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTermek)).BeginInit();
             this.tlpTermekTorles.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTermek)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVonalkod)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpFent
@@ -80,7 +80,7 @@
             this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.43949F));
             this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.50935F));
             this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.49065F));
-            this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
+            this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 242F));
             this.tlpFent.Controls.Add(this.btnSegitseg, 0, 0);
             this.tlpFent.Controls.Add(this.btnMagyar, 1, 0);
             this.tlpFent.Controls.Add(this.btnAngol, 2, 0);
@@ -116,54 +116,6 @@
             this.btnSegitseg.Text = "Segítségkérés egy munkatársunktól";
             this.btnSegitseg.Click += new System.EventHandler(this.btnSegitseg_Click);
             // 
-            // btnMagyar
-            // 
-            this.btnMagyar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnMagyar.BackColor = System.Drawing.Color.Transparent;
-            this.btnMagyar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMagyar.BackgroundImage")));
-            this.btnMagyar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMagyar.BorderColor = System.Drawing.Color.Cyan;
-            this.btnMagyar.BorderThickness = 3;
-            this.btnMagyar.CheckedState.Parent = this.btnMagyar;
-            this.btnMagyar.CustomImages.Parent = this.btnMagyar;
-            this.btnMagyar.FillColor = System.Drawing.Color.Transparent;
-            this.btnMagyar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnMagyar.ForeColor = System.Drawing.Color.Transparent;
-            this.btnMagyar.HoverState.Parent = this.btnMagyar;
-            this.btnMagyar.Location = new System.Drawing.Point(302, 29);
-            this.btnMagyar.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.btnMagyar.Name = "btnMagyar";
-            this.btnMagyar.PressedColor = System.Drawing.Color.Transparent;
-            this.btnMagyar.PressedDepth = 0;
-            this.btnMagyar.ShadowDecoration.Parent = this.btnMagyar;
-            this.btnMagyar.Size = new System.Drawing.Size(80, 50);
-            this.btnMagyar.TabIndex = 9;
-            this.btnMagyar.Click += new System.EventHandler(this.btnMagyar_Click);
-            // 
-            // btnAngol
-            // 
-            this.btnAngol.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAngol.BackColor = System.Drawing.Color.Transparent;
-            this.btnAngol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAngol.BackgroundImage")));
-            this.btnAngol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAngol.BorderColor = System.Drawing.Color.Transparent;
-            this.btnAngol.BorderThickness = 3;
-            this.btnAngol.CheckedState.Parent = this.btnAngol;
-            this.btnAngol.CustomImages.Parent = this.btnAngol;
-            this.btnAngol.FillColor = System.Drawing.Color.Transparent;
-            this.btnAngol.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnAngol.ForeColor = System.Drawing.Color.White;
-            this.btnAngol.HoverState.Parent = this.btnAngol;
-            this.btnAngol.Location = new System.Drawing.Point(395, 29);
-            this.btnAngol.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.btnAngol.Name = "btnAngol";
-            this.btnAngol.PressedColor = System.Drawing.Color.Transparent;
-            this.btnAngol.PressedDepth = 0;
-            this.btnAngol.ShadowDecoration.Parent = this.btnAngol;
-            this.btnAngol.Size = new System.Drawing.Size(80, 50);
-            this.btnAngol.TabIndex = 9;
-            this.btnAngol.Click += new System.EventHandler(this.btnAngol_Click);
-            // 
             // lblIdo
             // 
             this.lblIdo.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -176,15 +128,6 @@
             this.lblIdo.Size = new System.Drawing.Size(50, 29);
             this.lblIdo.TabIndex = 2;
             this.lblIdo.Text = "Idő";
-            // 
-            // pbVonalkod
-            // 
-            this.pbVonalkod.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbVonalkod.Location = new System.Drawing.Point(572, 4);
-            this.pbVonalkod.Name = "pbVonalkod";
-            this.pbVonalkod.Size = new System.Drawing.Size(184, 99);
-            this.pbVonalkod.TabIndex = 10;
-            this.pbVonalkod.TabStop = false;
             // 
             // Ido
             // 
@@ -270,7 +213,7 @@
             this.tlpLent.ColumnCount = 3;
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.86198F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.13802F));
-            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.Controls.Add(this.btnKilepes, 1, 0);
@@ -295,7 +238,7 @@
             this.btnKilepes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnKilepes.ForeColor = System.Drawing.Color.Black;
             this.btnKilepes.HoverState.Parent = this.btnKilepes;
-            this.btnKilepes.Location = new System.Drawing.Point(449, 14);
+            this.btnKilepes.Location = new System.Drawing.Point(447, 14);
             this.btnKilepes.Name = "btnKilepes";
             this.btnKilepes.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnKilepes.ShadowDecoration.Depth = 10;
@@ -326,11 +269,12 @@
             this.btnFizetes.BorderRadius = 4;
             this.btnFizetes.CheckedState.Parent = this.btnFizetes;
             this.btnFizetes.CustomImages.Parent = this.btnFizetes;
+            this.btnFizetes.Enabled = false;
             this.btnFizetes.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(106)))));
             this.btnFizetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnFizetes.ForeColor = System.Drawing.Color.Black;
             this.btnFizetes.HoverState.Parent = this.btnFizetes;
-            this.btnFizetes.Location = new System.Drawing.Point(844, 13);
+            this.btnFizetes.Location = new System.Drawing.Point(843, 13);
             this.btnFizetes.Name = "btnFizetes";
             this.btnFizetes.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnFizetes.ShadowDecoration.Depth = 10;
@@ -338,6 +282,7 @@
             this.btnFizetes.Size = new System.Drawing.Size(140, 47);
             this.btnFizetes.TabIndex = 4;
             this.btnFizetes.Text = "Fizetés";
+            this.btnFizetes.Click += new System.EventHandler(this.btnFizetes_Click);
             // 
             // tlpJobb
             // 
@@ -409,23 +354,6 @@
             this.lblTermek.TabIndex = 0;
             this.lblTermek.Text = "termek";
             this.lblTermek.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbTermek
-            // 
-            this.pbTermek.AllowFocused = false;
-            this.pbTermek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbTermek.AutoSizeHeight = true;
-            this.pbTermek.BorderRadius = 197;
-            this.pbTermek.Image = ((System.Drawing.Image)(resources.GetObject("pbTermek.Image")));
-            this.pbTermek.IsCircle = false;
-            this.pbTermek.Location = new System.Drawing.Point(50, 124);
-            this.pbTermek.Margin = new System.Windows.Forms.Padding(50);
-            this.pbTermek.Name = "pbTermek";
-            this.pbTermek.Size = new System.Drawing.Size(394, 251);
-            this.pbTermek.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbTermek.TabIndex = 1;
-            this.pbTermek.TabStop = false;
-            this.pbTermek.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Custom;
             // 
             // tlpTermekTorles
             // 
@@ -553,6 +481,80 @@
             this.AdatbazisEllenorzes.Interval = 1000;
             this.AdatbazisEllenorzes.Tick += new System.EventHandler(this.AdatbazisEllenorzes_Tick);
             // 
+            // pbTermek
+            // 
+            this.pbTermek.AllowFocused = false;
+            this.pbTermek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbTermek.AutoSizeHeight = true;
+            this.pbTermek.BorderRadius = 197;
+            this.pbTermek.Image = ((System.Drawing.Image)(resources.GetObject("pbTermek.Image")));
+            this.pbTermek.IsCircle = false;
+            this.pbTermek.Location = new System.Drawing.Point(50, 124);
+            this.pbTermek.Margin = new System.Windows.Forms.Padding(50);
+            this.pbTermek.Name = "pbTermek";
+            this.pbTermek.Size = new System.Drawing.Size(394, 251);
+            this.pbTermek.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTermek.TabIndex = 1;
+            this.pbTermek.TabStop = false;
+            this.pbTermek.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Custom;
+            // 
+            // btnMagyar
+            // 
+            this.btnMagyar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnMagyar.BackColor = System.Drawing.Color.Transparent;
+            this.btnMagyar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMagyar.BackgroundImage")));
+            this.btnMagyar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMagyar.BorderColor = System.Drawing.Color.Cyan;
+            this.btnMagyar.BorderThickness = 3;
+            this.btnMagyar.CheckedState.Parent = this.btnMagyar;
+            this.btnMagyar.CustomImages.Parent = this.btnMagyar;
+            this.btnMagyar.FillColor = System.Drawing.Color.Transparent;
+            this.btnMagyar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnMagyar.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMagyar.HoverState.Parent = this.btnMagyar;
+            this.btnMagyar.Location = new System.Drawing.Point(300, 29);
+            this.btnMagyar.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.btnMagyar.Name = "btnMagyar";
+            this.btnMagyar.PressedColor = System.Drawing.Color.Transparent;
+            this.btnMagyar.PressedDepth = 0;
+            this.btnMagyar.ShadowDecoration.Parent = this.btnMagyar;
+            this.btnMagyar.Size = new System.Drawing.Size(80, 50);
+            this.btnMagyar.TabIndex = 9;
+            this.btnMagyar.Click += new System.EventHandler(this.btnMagyar_Click);
+            // 
+            // btnAngol
+            // 
+            this.btnAngol.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAngol.BackColor = System.Drawing.Color.Transparent;
+            this.btnAngol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAngol.BackgroundImage")));
+            this.btnAngol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAngol.BorderColor = System.Drawing.Color.Transparent;
+            this.btnAngol.BorderThickness = 3;
+            this.btnAngol.CheckedState.Parent = this.btnAngol;
+            this.btnAngol.CustomImages.Parent = this.btnAngol;
+            this.btnAngol.FillColor = System.Drawing.Color.Transparent;
+            this.btnAngol.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAngol.ForeColor = System.Drawing.Color.White;
+            this.btnAngol.HoverState.Parent = this.btnAngol;
+            this.btnAngol.Location = new System.Drawing.Point(393, 29);
+            this.btnAngol.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.btnAngol.Name = "btnAngol";
+            this.btnAngol.PressedColor = System.Drawing.Color.Transparent;
+            this.btnAngol.PressedDepth = 0;
+            this.btnAngol.ShadowDecoration.Parent = this.btnAngol;
+            this.btnAngol.Size = new System.Drawing.Size(80, 50);
+            this.btnAngol.TabIndex = 9;
+            this.btnAngol.Click += new System.EventHandler(this.btnAngol_Click);
+            // 
+            // pbVonalkod
+            // 
+            this.pbVonalkod.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbVonalkod.Location = new System.Drawing.Point(569, 4);
+            this.pbVonalkod.Name = "pbVonalkod";
+            this.pbVonalkod.Size = new System.Drawing.Size(184, 99);
+            this.pbVonalkod.TabIndex = 10;
+            this.pbVonalkod.TabStop = false;
+            // 
             // Onkiszolgalo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -571,7 +573,6 @@
             this.Shown += new System.EventHandler(this.Onkiszolgalo_Shown);
             this.tlpFent.ResumeLayout(false);
             this.tlpFent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVonalkod)).EndInit();
             this.tlpBal.ResumeLayout(false);
             this.tlpLent.ResumeLayout(false);
             this.tlpLent.PerformLayout();
@@ -580,11 +581,12 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTermek)).EndInit();
             this.tlpTermekTorles.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbTermek)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVonalkod)).EndInit();
             this.ResumeLayout(false);
 
     }
