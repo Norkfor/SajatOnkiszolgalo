@@ -25,6 +25,9 @@ namespace SajatOnkiszolgalo
         public string kivalasztottNev = "";
         string dolgozoNev = "";
         string eleresiUtvonal = Path.GetDirectoryName(Application.ExecutablePath);
+        public bool modositas = false;
+        public long jelenlegiVonalkod = 0;
+        public double jelenlegiSuly = 0;
         frmDolgozo dolgozo;
 
         public Onkiszolgalo()
@@ -222,7 +225,7 @@ namespace SajatOnkiszolgalo
             try
             {
                 adatbazis.Conn.Open();
-                string sqlJelenlegi = $"SELECT v.id, a.nev, a.mennyiseg, am.mertekegyseg FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE v.aktiv = 1 AND p.vonalkod_szam = '{randomSzam}';";
+                string sqlJelenlegi = $"SELECT v.id, a.nev, a.mennyiseg, am.mertekegyseg, v.termekDarab, a.gyumolcszoldseg FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE v.aktiv = 1 AND p.vonalkod_szam = '{randomSzam}';";
                 var parancsJelenlegi = new MySqlCommand(sqlJelenlegi, adatbazis.Conn);
                 var olvasoJelenlegi = parancsJelenlegi.ExecuteReader();
                 if (olvasoJelenlegi.HasRows)
@@ -232,14 +235,33 @@ namespace SajatOnkiszolgalo
                     string jelenlegiNev = olvasoJelenlegi.GetString(1);
                     double jelenlegiMennyiseg = olvasoJelenlegi.GetDouble(2);
                     string jelenlegiMertekegyseg = olvasoJelenlegi.GetString(3);
-                    lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
-                    pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
-                    adatbazis.Conn.Close();
-                    adatbazis.Conn.Open();
-                    string sqlNemAktiv = $"UPDATE `vasarlok` SET `aktiv` = '0' WHERE `vasarlok`.`id` = {vasarloID};";
-                    var parancsNemAktiv = new MySqlCommand(sqlNemAktiv, adatbazis.Conn);
-                    var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
-                    adatbazis.Conn.Close();
+                    double suly = olvasoJelenlegi.GetDouble(4);
+                    int gyumolcszoldseg = olvasoJelenlegi.GetInt32(5);
+                    jelenlegiSuly = suly;
+                    if (gyumolcszoldseg == 0)
+                    {
+                        lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
+                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        adatbazis.Conn.Close();
+                        adatbazis.Conn.Open();
+                        string sqlNemAktiv = $"UPDATE `vasarlok` SET `aktiv` = '0' WHERE `vasarlok`.`id` = {vasarloID};";
+                        var parancsNemAktiv = new MySqlCommand(sqlNemAktiv, adatbazis.Conn);
+                        var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
+                        adatbazis.Conn.Close();
+
+                    }
+                    else
+                    {
+                        lblTermek.Text = $"{jelenlegiNev} {suly}{jelenlegiMertekegyseg}";
+                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        adatbazis.Conn.Close();
+                        adatbazis.Conn.Open();
+                        string sqlNemAktiv = $"UPDATE `vasarlok` SET `aktiv` = '0' WHERE `vasarlok`.`id` = {vasarloID};";
+                        var parancsNemAktiv = new MySqlCommand(sqlNemAktiv, adatbazis.Conn);
+                        var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
+                        adatbazis.Conn.Close();
+                    }
+                    
                 }
                 adatbazis.Conn.Close();
             }
@@ -272,24 +294,24 @@ namespace SajatOnkiszolgalo
                     {
                         int aruid = olvasoAru.GetInt32(0);
                         long vonalkodszam = olvasoAru.GetInt64(1);
+                        jelenlegiVonalkod = vonalkodszam;
                         string arunev = olvasoAru.GetString(2);
                         double mennyiseg = olvasoAru.GetDouble(3);
                         string mertekegyseg = olvasoAru.GetString(4);
                         int ara = olvasoAru.GetInt32(5);
-                        int darab = olvasoAru.GetInt32(6);
+                        double darab = olvasoAru.GetDouble(6);
                         int gyumolcszoldseg = olvasoAru.GetInt32(7);
-                        
                         if (gyumolcszoldseg == 1)
                         {
-                            string hanyszor = $"({mennyiseg:N3}*{ara})";
+                            string hanyszor = $"({darab:N3}*{ara})";
                             string nev = $"{arunev} {hanyszor:N3}";
                             if (nev.Length > lbNevSzeles)
                             {
                                 nev = nev.Substring(0, lbNevSzeles - (2 + hanyszor.Length)) + ".." + hanyszor;
                             }
                             lbNev.Items.Add(nev);
-                            lbAr.Items.Add($"{(ara * mennyiseg):N0}Ft");
-                            osszesen += ara * mennyiseg;
+                            lbAr.Items.Add($"{(ara * darab):N0}Ft");
+                            osszesen += ara * darab;
                         }
                         else
                         {
@@ -325,6 +347,7 @@ namespace SajatOnkiszolgalo
             double mennyisegDarab = 0;
             bool vanTermek = false;
             int gyumolcszoldseg = 0;
+
             try
             {
                 adatbazis.Conn.Open();
@@ -334,28 +357,8 @@ namespace SajatOnkiszolgalo
                 if (olvasoDolgozo2.HasRows)
                 {
                     olvasoDolgozo2.Read();
-                    gyumolcszoldseg = olvasoDolgozo2.GetInt32(0);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                adatbazis.Conn.Close();
-            }
-
-            try
-            {
-                adatbazis.Conn.Open();
-                string sqlDolgozo2 = $"SELECT termekDarab FROM vasarlok WHERE vasarlok.id = {vasarloID}";
-                var parancsDolgozo2 = new MySqlCommand(sqlDolgozo2, adatbazis.Conn);
-                var olvasoDolgozo2 = parancsDolgozo2.ExecuteReader();
-                if (olvasoDolgozo2.HasRows)
-                {
-                    olvasoDolgozo2.Read();
                     mennyisegDarab = olvasoDolgozo2.GetDouble(0);
+                    gyumolcszoldseg = olvasoDolgozo2.GetInt32(1);
                     vanTermek = true;
                 }
             }
@@ -374,7 +377,7 @@ namespace SajatOnkiszolgalo
             }
             else if (vanTermek && gyumolcszoldseg == 1)
             {
-                SulyMegadas sulyMegadas = new SulyMegadas(adatbazis, this, vonalkod);
+                SulyMegadas sulyMegadas = new SulyMegadas(adatbazis, this, jelenlegiVonalkod, jelenlegiSuly);
                 sulyMegadas.ShowDialog();
             }
             else
@@ -420,6 +423,7 @@ namespace SajatOnkiszolgalo
                     double jelenlegiMennyiseg = olvasoJelenlegi.GetDouble(1);
                     string jelenlegiMertekegyseg = olvasoJelenlegi.GetString(2);
                     vasarloID = olvasoJelenlegi.GetInt32(3);
+                    
                     lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
                     pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
                     adatbazis.Conn.Close();
@@ -455,6 +459,7 @@ namespace SajatOnkiszolgalo
 
         private void btnTermekek_Click(object sender, EventArgs e)
         {
+            
             AdatbazisEllenorzes.Enabled = false;
             Termekek frmTermekek = new Termekek(adatbazis, this);
             frmTermekek.ShowDialog();

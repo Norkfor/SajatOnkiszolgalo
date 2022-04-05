@@ -73,11 +73,12 @@
             this.lblSuly.AutoSize = true;
             this.lblSuly.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.lblSuly.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblSuly.Location = new System.Drawing.Point(320, 45);
+            this.lblSuly.Location = new System.Drawing.Point(304, 30);
             this.lblSuly.Name = "lblSuly";
-            this.lblSuly.Size = new System.Drawing.Size(42, 29);
+            this.lblSuly.Size = new System.Drawing.Size(73, 58);
             this.lblSuly.TabIndex = 1;
-            this.lblSuly.Text = "0g";
+            this.lblSuly.Text = "0g\r\n(0kg)\r\n";
+            this.lblSuly.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2
             // 
@@ -390,6 +391,7 @@
             this.btnHozzaad.BorderRadius = 4;
             this.btnHozzaad.CheckedState.Parent = this.btnHozzaad;
             this.btnHozzaad.CustomImages.Parent = this.btnHozzaad;
+            this.btnHozzaad.Enabled = false;
             this.btnHozzaad.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(106)))));
             this.btnHozzaad.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnHozzaad.ForeColor = System.Drawing.Color.Black;

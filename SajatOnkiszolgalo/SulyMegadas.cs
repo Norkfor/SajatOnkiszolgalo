@@ -12,7 +12,7 @@ namespace SajatOnkiszolgalo
         Onkiszolgalo onkisziolgaloForm;
         Termekek termekekForm;
         long vonalkod;
-        
+
         public SulyMegadas(DB adatbazis, Onkiszolgalo onkisziolgaloForm, long vonalkod, Termekek termekekForm)
         {
             InitializeComponent();
@@ -21,73 +21,77 @@ namespace SajatOnkiszolgalo
             this.vonalkod = vonalkod;
             this.termekekForm = termekekForm;
         }
-        public SulyMegadas(DB adatbazis, Onkiszolgalo onkisziolgaloForm, long vonalkod)
+        public SulyMegadas(DB adatbazis, Onkiszolgalo onkisziolgaloForm, long vonalkod, double jelenlegiSuly)
         {
             InitializeComponent();
             this.adatbazis = adatbazis;
             this.onkisziolgaloForm = onkisziolgaloForm;
             this.vonalkod = vonalkod;
+            onkisziolgaloForm.modositas = true;
+            suly = Convert.ToInt32(jelenlegiSuly * 1000).ToString();
+            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
+            btnHozzaad.Text = "Módosítás";
+            btnHozzaad.Enabled = true;
         }
+        private void SulyKiiras(string szam)
+        {
+            suly += szam;
+            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
+            if (szam != "0")
+            {
+                btnHozzaad.Enabled = true;
+            }
 
+        }
         private void btn0_Click(object sender, EventArgs e)
         {
-            suly += "0";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("0");
 
         }
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            suly += "1";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("1");
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            suly += "2";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("2");
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
-            suly += "3";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("3");
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            suly += "4";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("4");
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
-            suly += "5";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("5");
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
-            suly += "6";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("6");
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
-            suly += "7";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("7");
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
-            suly += "8";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("8");
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
-            suly += "9";
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+            SulyKiiras("9");
         }
 
         private void btnTorles_Click(object sender, EventArgs e)
@@ -96,13 +100,14 @@ namespace SajatOnkiszolgalo
             if (suly.Length - 1 > 0)
             {
                 suly = suly.Remove(suly.Length - 1);
-                lblSuly.Text = $"{Convert.ToInt32(suly):N0}g";
+                lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
 
             }
             else
             {
                 suly = "0";
-                lblSuly.Text = $"{suly}g";
+                lblSuly.Text = $"0g\n(0kg)";
+                btnHozzaad.Enabled = false;
             }
         }
 
@@ -149,22 +154,11 @@ namespace SajatOnkiszolgalo
                     olvaso1.Read();
                     arucikkekID = olvaso1.GetInt32(0);
                     adatbazis.Conn.Close();
-                    adatbazis.Conn.Open();
-                    MySqlCommand parancs2 = new MySqlCommand($"SELECT id, termekDarab FROM vasarlok WHERE arucikkekID = '{arucikkekID}' AND pultokID = '{pultokID}';", adatbazis.Conn);
-                    MySqlDataReader olvaso2 = parancs2.ExecuteReader();
-                    if (olvaso2.HasRows)
+                    if (onkisziolgaloForm.modositas == false)
                     {
-                        olvaso2.Read();
-                        int id = olvaso2.GetInt32(0);
-                        int darab = olvaso2.GetInt32(1) + 1;
-                        adatbazis.Conn.Close();
                         adatbazis.Conn.Open();
-                        MySqlCommand parancs3 = new MySqlCommand($"UPDATE `vasarlok` SET `pultokID` = '{pultokID}', `arucikkekID` = '{arucikkekID}', `termekDarab` = '{darab}', `aktiv` = '1' WHERE `vasarlok`.`id` = '{id}';", adatbazis.Conn);
-                        parancs3.ExecuteNonQuery();
-                        adatbazis.Conn.Close();
-                        adatbazis.Conn.Open();
-                        MySqlCommand parancs5 = new MySqlCommand($"UPDATE `arucikkek` SET `mennyiseg` = '{sulyKilogramm.ToString(new CultureInfo("en-US"))}' WHERE `arucikkek`.`aruid` = {arucikkekID};", adatbazis.Conn);
-                        parancs5.ExecuteNonQuery();
+                        MySqlCommand parancs4 = new MySqlCommand($"INSERT INTO `vasarlok` (`id`, `pultokID`, `arucikkekID`, `termekDarab`, `aktiv`) VALUES (NULL, '{pultokID}', '{arucikkekID}', '{sulyKilogramm.ToString(new CultureInfo("en-US"))}', '1');", adatbazis.Conn);
+                        parancs4.ExecuteNonQuery();
                         adatbazis.Conn.Close();
                         onkisziolgaloForm.ListboxDeklaralas();
                         onkisziolgaloForm.JelenlegiTermekBeallitas();
@@ -173,22 +167,17 @@ namespace SajatOnkiszolgalo
                     }
                     else
                     {
-                        adatbazis.Conn.Close();
                         adatbazis.Conn.Open();
-                        MySqlCommand parancs4 = new MySqlCommand($"INSERT INTO `vasarlok` (`id`, `pultokID`, `arucikkekID`, `termekDarab`, `aktiv`) VALUES (NULL, '{pultokID}', '{arucikkekID}', '1', '1');", adatbazis.Conn);
+                        MySqlCommand parancs4 = new MySqlCommand($"UPDATE `vasarlok` SET `pultokID` = '{pultokID}', `arucikkekID` = '{arucikkekID}', `termekDarab` = '{sulyKilogramm.ToString(new CultureInfo("en-US"))}', `aktiv` = '1' WHERE `vasarlok`.`id` = '{onkisziolgaloForm.vasarloID}';", adatbazis.Conn);
                         parancs4.ExecuteNonQuery();
-                        adatbazis.Conn.Close();
-                        adatbazis.Conn.Open();
-                        MySqlCommand parancs6 = new MySqlCommand($"UPDATE `arucikkek` SET `mennyiseg` = '{sulyKilogramm.ToString(new CultureInfo("en-US"))}' WHERE `arucikkek`.`aruid` = {arucikkekID};", adatbazis.Conn);
-                        parancs6.ExecuteNonQuery();
                         adatbazis.Conn.Close();
                         onkisziolgaloForm.ListboxDeklaralas();
                         onkisziolgaloForm.JelenlegiTermekBeallitas();
+                        onkisziolgaloForm.modositas = false;
                         Close();
-                        termekekForm.Close();
                     }
-                    adatbazis.Conn.Close();
                 }
+
                 else
                 {
                     MessageBox.Show($"Az adatbázisban nem szerepel ez az árucikk!", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
