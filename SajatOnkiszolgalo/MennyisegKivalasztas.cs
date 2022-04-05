@@ -15,8 +15,8 @@ namespace SajatOnkiszolgalo
     {
         private Onkiszolgalo onkiszolgaloForm;
         private DB adatbazis;
-        int darab;
-        public MennyisegKivalasztas(int darab, Onkiszolgalo onkiszolgaloForm, DB adatbazis)
+        double darab;
+        public MennyisegKivalasztas(double darab, Onkiszolgalo onkiszolgaloForm, DB adatbazis)
         {
             InitializeComponent();
             this.darab = darab;

@@ -261,6 +261,12 @@
     <Compile Include="SegitsegKeres.Designer.cs">
       <DependentUpon>SegitsegKeres.cs</DependentUpon>
     </Compile>
+    <Compile Include="SulyMegadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SulyMegadas.Designer.cs">
+      <DependentUpon>SulyMegadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Termekek.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +304,9 @@
     </Compile>
     <EmbeddedResource Include="SegitsegKeres.resx">
       <DependentUpon>SegitsegKeres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SulyMegadas.resx">
+      <DependentUpon>SulyMegadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Termekek.resx">
       <DependentUpon>Termekek.cs</DependentUpon>

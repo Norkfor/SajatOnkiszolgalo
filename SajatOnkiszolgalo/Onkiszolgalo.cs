@@ -15,7 +15,7 @@ namespace SajatOnkiszolgalo
         DB adatbazis;
 
         bool MagyarIdoVan = true;
-        int osszesen;
+        double osszesen;
         int lbNevSzeles;
         public int vasarloID = 0;
         public long randomSzam = 0;
@@ -258,7 +258,7 @@ namespace SajatOnkiszolgalo
             try
             {
                 adatbazis.Conn.Open();
-                string sqlAru = $"SELECT a.aruid, a.vonalkod_szam, a.nev, a.mennyiseg, am.mertekegyseg, a.ara, v.termekDarab FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE p.vonalkod_szam = '{randomSzam}' ORDER BY v.id ASC";
+                string sqlAru = $"SELECT a.aruid, a.vonalkod_szam, a.nev, a.mennyiseg, am.mertekegyseg, a.ara, v.termekDarab, a.gyumolcszoldseg FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE p.vonalkod_szam = '{randomSzam}' ORDER BY v.id ASC";
                 var parancsAru = new MySqlCommand(sqlAru, adatbazis.Conn);
                 var olvasoAru = parancsAru.ExecuteReader();
 
@@ -277,16 +277,35 @@ namespace SajatOnkiszolgalo
                         string mertekegyseg = olvasoAru.GetString(4);
                         int ara = olvasoAru.GetInt32(5);
                         int darab = olvasoAru.GetInt32(6);
-                        string hanyszor = $"({darab}*{ara:N0})";
-                        string nev = $"{arunev} {hanyszor}";
-                        if (nev.Length > lbNevSzeles)
+                        int gyumolcszoldseg = olvasoAru.GetInt32(7);
+                        
+                        if (gyumolcszoldseg == 1)
                         {
-                            nev = nev.Substring(0, lbNevSzeles - (2 + hanyszor.Length)) + ".." + hanyszor;
+                            string hanyszor = $"({mennyiseg:N3}*{ara})";
+                            string nev = $"{arunev} {hanyszor:N3}";
+                            if (nev.Length > lbNevSzeles)
+                            {
+                                nev = nev.Substring(0, lbNevSzeles - (2 + hanyszor.Length)) + ".." + hanyszor;
+                            }
+                            lbNev.Items.Add(nev);
+                            lbAr.Items.Add($"{(ara * mennyiseg):N0}Ft");
+                            osszesen += ara * mennyiseg;
                         }
-                        lbNev.Items.Add(nev);
-                        lbAr.Items.Add($"{(ara * darab):N0}Ft");
-                        osszesen += ara * darab;
+                        else
+                        {
+                            string hanyszor = $"({darab}*{ara:N0})";
+                            string nev = $"{arunev} {hanyszor}";
+                            if (nev.Length > lbNevSzeles)
+                            {
+                                nev = nev.Substring(0, lbNevSzeles - (2 + hanyszor.Length)) + ".." + hanyszor;
+                            }
+                            lbNev.Items.Add(nev);
+                            lbAr.Items.Add($"{(ara * darab):N0}Ft");
+                            osszesen += ara * darab;
+                            
+                        }
                         lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
+
                     }
                 }
                 adatbazis.Conn.Close();
@@ -303,8 +322,30 @@ namespace SajatOnkiszolgalo
 
         private void btnMennyiseg_Click(object sender, EventArgs e)
         {
-            int mennyisegDarab = 0;
+            double mennyisegDarab = 0;
             bool vanTermek = false;
+            int gyumolcszoldseg = 0;
+            try
+            {
+                adatbazis.Conn.Open();
+                string sqlDolgozo2 = $"SELECT v.termekDarab, a.gyumolcszoldseg FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid WHERE v.id = {vasarloID}";
+                var parancsDolgozo2 = new MySqlCommand(sqlDolgozo2, adatbazis.Conn);
+                var olvasoDolgozo2 = parancsDolgozo2.ExecuteReader();
+                if (olvasoDolgozo2.HasRows)
+                {
+                    olvasoDolgozo2.Read();
+                    gyumolcszoldseg = olvasoDolgozo2.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                adatbazis.Conn.Close();
+            }
+
             try
             {
                 adatbazis.Conn.Open();
@@ -314,7 +355,7 @@ namespace SajatOnkiszolgalo
                 if (olvasoDolgozo2.HasRows)
                 {
                     olvasoDolgozo2.Read();
-                    mennyisegDarab = olvasoDolgozo2.GetInt32(0);
+                    mennyisegDarab = olvasoDolgozo2.GetDouble(0);
                     vanTermek = true;
                 }
             }
@@ -326,10 +367,15 @@ namespace SajatOnkiszolgalo
             {
                 adatbazis.Conn.Close();
             }
-            if (vanTermek)
+            if (vanTermek && gyumolcszoldseg == 0)
             {
                 MennyisegKivalasztas frmMennyiseg = new MennyisegKivalasztas(mennyisegDarab, this, adatbazis);
                 frmMennyiseg.ShowDialog();
+            }
+            else if (vanTermek && gyumolcszoldseg == 1)
+            {
+                SulyMegadas sulyMegadas = new SulyMegadas(adatbazis, this, vonalkod);
+                sulyMegadas.ShowDialog();
             }
             else
             {
