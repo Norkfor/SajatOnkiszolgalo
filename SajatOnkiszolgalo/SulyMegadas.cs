@@ -28,7 +28,7 @@ namespace SajatOnkiszolgalo
             this.onkisziolgaloForm = onkisziolgaloForm;
             this.vonalkod = vonalkod;
             onkisziolgaloForm.modositas = true;
-            suly = Convert.ToInt32(jelenlegiSuly * 1000).ToString();
+            suly = Convert.ToDouble(jelenlegiSuly * 1000).ToString();
             lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
             btnHozzaad.Text = "Módosítás";
             btnHozzaad.Enabled = true;

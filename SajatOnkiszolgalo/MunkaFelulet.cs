@@ -20,6 +20,7 @@ namespace SajatOnkiszolgalo
             InitializeComponent();
             this.segitseg = segitseg;
             this.onkiszolgaloForm = onkiszolgaloForm;
+            
             if (Screen.AllScreens.Length > 1)
             {
                 if (WindowState == FormWindowState.Normal || WindowState == FormWindowState.Minimized)
@@ -30,11 +31,20 @@ namespace SajatOnkiszolgalo
             }
         }
 
+        public void ListboxFrissit()
+        {
+            lbNev.Items.Clear();
+            lbAr.Items.Clear();
+            lbNev.Items.AddRange(onkiszolgaloForm.lbNev.Items);
+            lbAr.Items.AddRange(onkiszolgaloForm.lbAr.Items);
+        }
+
         private void btnEngedely_Click(object sender, EventArgs e)
         {
             segitseg.Hide();
             onkiszolgaloForm.Enabled = true;
             btnEngedely.Enabled = false;
         }
+
     }
 }

@@ -14,13 +14,13 @@ namespace SajatOnkiszolgalo
     public partial class KeziBevitel : Form
     {
         DB adatbazis;
-        Onkiszolgalo onkisziolgaloForm;
-        public KeziBevitel(DB adatbazis, Onkiszolgalo onkisziolgaloForm)
+        Onkiszolgalo onkiszolgaloForm;
+        public KeziBevitel(DB adatbazis, Onkiszolgalo onkiszolgaloForm)
         {
             InitializeComponent();
             lblKodSor.Text = "";
             this.adatbazis = adatbazis;
-            this.onkisziolgaloForm = onkisziolgaloForm;
+            this.onkiszolgaloForm = onkiszolgaloForm;
         }
 
         private void btn0_Click(object sender, EventArgs e)
@@ -85,6 +85,7 @@ namespace SajatOnkiszolgalo
 
         private void btnKilep_Click(object sender, EventArgs e)
         {
+            onkiszolgaloForm.AdatbazisEllenorzes.Enabled = true;
             Close();
         }
 
@@ -95,7 +96,7 @@ namespace SajatOnkiszolgalo
             try
             {
                 adatbazis.Conn.Open();
-                MySqlCommand parancs = new MySqlCommand($"SELECT id FROM pultok WHERE vonalkod_szam = {onkisziolgaloForm.randomSzam};", adatbazis.Conn);
+                MySqlCommand parancs = new MySqlCommand($"SELECT id FROM pultok WHERE vonalkod_szam = {onkiszolgaloForm.randomSzam};", adatbazis.Conn);
 
                 MySqlDataReader olvaso = parancs.ExecuteReader();
                 if (olvaso.HasRows)
@@ -117,29 +118,30 @@ namespace SajatOnkiszolgalo
             try
             {
                 adatbazis.Conn.Open();
-                MySqlCommand parancs1 = new MySqlCommand($"SELECT aruid FROM arucikkek WHERE vonalkod_szam = {Convert.ToInt64(lblKodSor.Text)};", adatbazis.Conn);
+                MySqlCommand parancs1 = new MySqlCommand($"SELECT aruid, gyumolcszoldseg FROM arucikkek WHERE vonalkod_szam = {Convert.ToInt64(lblKodSor.Text)};", adatbazis.Conn);
                 MySqlDataReader olvaso1 = parancs1.ExecuteReader();
                 if (olvaso1.HasRows)
                 {
                     olvaso1.Read();
                     arucikkekID = olvaso1.GetInt32(0);
+                    int gyumolcszoldseg = olvaso1.GetInt32(1);
                     adatbazis.Conn.Close();
                     adatbazis.Conn.Open();
                     MySqlCommand parancs2 = new MySqlCommand($"SELECT id, termekDarab FROM vasarlok WHERE arucikkekID = '{arucikkekID}' AND pultokID = '{pultokID}';", adatbazis.Conn);
                     MySqlDataReader olvaso2 = parancs2.ExecuteReader();
-                    if (olvaso2.HasRows)
+                    if (olvaso2.HasRows && gyumolcszoldseg != 1)
                     {
                         olvaso2.Read();
                         int id = olvaso2.GetInt32(0);
-                        int darab = olvaso2.GetInt32(1) + 1;
+                        double darab = olvaso2.GetDouble(1);
                         adatbazis.Conn.Close();
                         adatbazis.Conn.Open();
                         MySqlCommand parancs3 = new MySqlCommand($"UPDATE `vasarlok` SET `pultokID` = '{pultokID}', `arucikkekID` = '{arucikkekID}', `termekDarab` = '{darab}', `aktiv` = '1' WHERE `vasarlok`.`id` = '{id}';", adatbazis.Conn);
                         parancs3.ExecuteNonQuery();
                         MessageBox.Show("A termék hozzáadása sikeresen megtörtént!", "Információ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         adatbazis.Conn.Close();
-                        onkisziolgaloForm.ListboxDeklaralas();
-                        onkisziolgaloForm.JelenlegiTermekBeallitas();
+                        onkiszolgaloForm.ListboxDeklaralas();
+                        onkiszolgaloForm.JelenlegiTermekBeallitas();
                         lblKodSor.Text = "";
                     }
                     else
@@ -150,8 +152,8 @@ namespace SajatOnkiszolgalo
                         parancs4.ExecuteNonQuery();
                         MessageBox.Show("A termék hozzáadása sikeresen megtörtént!", "Információ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         adatbazis.Conn.Close();
-                        onkisziolgaloForm.ListboxDeklaralas();
-                        onkisziolgaloForm.JelenlegiTermekBeallitas();
+                        onkiszolgaloForm.ListboxDeklaralas();
+                        onkiszolgaloForm.JelenlegiTermekBeallitas();
                         lblKodSor.Text = "";
                     }
                     adatbazis.Conn.Close();
@@ -159,6 +161,7 @@ namespace SajatOnkiszolgalo
                 else
                 {
                     MessageBox.Show($"Az adatbázisban nem szerepel ez az árucikk!", "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblKodSor.Text = "";
                 }
 
             }

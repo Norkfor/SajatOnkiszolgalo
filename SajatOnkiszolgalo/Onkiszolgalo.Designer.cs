@@ -80,7 +80,7 @@
             this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.43949F));
             this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.50935F));
             this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.49065F));
-            this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 256F));
+            this.tlpFent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 264F));
             this.tlpFent.Controls.Add(this.btnSegitseg, 0, 0);
             this.tlpFent.Controls.Add(this.btnMagyar, 1, 0);
             this.tlpFent.Controls.Add(this.btnAngol, 2, 0);
@@ -106,7 +106,7 @@
             this.btnSegitseg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnSegitseg.ForeColor = System.Drawing.Color.Black;
             this.btnSegitseg.HoverState.Parent = this.btnSegitseg;
-            this.btnSegitseg.Location = new System.Drawing.Point(12, 26);
+            this.btnSegitseg.Location = new System.Drawing.Point(11, 26);
             this.btnSegitseg.Name = "btnSegitseg";
             this.btnSegitseg.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnSegitseg.ShadowDecoration.Depth = 10;
@@ -130,7 +130,7 @@
             this.btnMagyar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnMagyar.ForeColor = System.Drawing.Color.Transparent;
             this.btnMagyar.HoverState.Parent = this.btnMagyar;
-            this.btnMagyar.Location = new System.Drawing.Point(293, 29);
+            this.btnMagyar.Location = new System.Drawing.Point(289, 29);
             this.btnMagyar.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnMagyar.Name = "btnMagyar";
             this.btnMagyar.PressedColor = System.Drawing.Color.Transparent;
@@ -154,7 +154,7 @@
             this.btnAngol.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAngol.ForeColor = System.Drawing.Color.White;
             this.btnAngol.HoverState.Parent = this.btnAngol;
-            this.btnAngol.Location = new System.Drawing.Point(386, 29);
+            this.btnAngol.Location = new System.Drawing.Point(382, 29);
             this.btnAngol.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnAngol.Name = "btnAngol";
             this.btnAngol.PressedColor = System.Drawing.Color.Transparent;
@@ -180,7 +180,7 @@
             // pbVonalkod
             // 
             this.pbVonalkod.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbVonalkod.Location = new System.Drawing.Point(557, 4);
+            this.pbVonalkod.Location = new System.Drawing.Point(550, 4);
             this.pbVonalkod.Name = "pbVonalkod";
             this.pbVonalkod.Size = new System.Drawing.Size(184, 99);
             this.pbVonalkod.TabIndex = 10;
@@ -270,7 +270,7 @@
             this.tlpLent.ColumnCount = 3;
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.86198F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.13802F));
-            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 231F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.Controls.Add(this.btnKilepes, 1, 0);
@@ -295,7 +295,7 @@
             this.btnKilepes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnKilepes.ForeColor = System.Drawing.Color.Black;
             this.btnKilepes.HoverState.Parent = this.btnKilepes;
-            this.btnKilepes.Location = new System.Drawing.Point(442, 14);
+            this.btnKilepes.Location = new System.Drawing.Point(440, 14);
             this.btnKilepes.Name = "btnKilepes";
             this.btnKilepes.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnKilepes.ShadowDecoration.Depth = 10;
@@ -331,7 +331,7 @@
             this.btnFizetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnFizetes.ForeColor = System.Drawing.Color.Black;
             this.btnFizetes.HoverState.Parent = this.btnFizetes;
-            this.btnFizetes.Location = new System.Drawing.Point(840, 13);
+            this.btnFizetes.Location = new System.Drawing.Point(838, 13);
             this.btnFizetes.Name = "btnFizetes";
             this.btnFizetes.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnFizetes.ShadowDecoration.Depth = 10;
@@ -614,12 +614,12 @@
         private Bunifu.UI.WinForms.BunifuPictureBox pbTermek;
         internal System.Windows.Forms.ListBox lbNev;
         internal System.Windows.Forms.ListBox lbAr;
-        private System.Windows.Forms.Timer AdatbazisEllenorzes;
         private System.Windows.Forms.PictureBox pbVonalkod;
         public System.Windows.Forms.TableLayoutPanel tlpTermekTorles;
         public Guna.UI2.WinForms.Guna2Button btnTermekTorlese;
         public Guna.UI2.WinForms.Guna2Button btnKilepes;
         public System.Windows.Forms.TableLayoutPanel tlpTetelek;
+        public System.Windows.Forms.Timer AdatbazisEllenorzes;
     }
 }
 

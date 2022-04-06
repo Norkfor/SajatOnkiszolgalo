@@ -15,18 +15,20 @@ namespace SajatOnkiszolgalo
     {
         private Onkiszolgalo onkiszolgaloForm;
         DB adatbazis;
-        public frmDolgozo(string nev, Onkiszolgalo onkisziolgaloForm, DB adatbazis)
+        public frmDolgozo(string nev, Onkiszolgalo onkiszolgaloForm, DB adatbazis)
         {
             InitializeComponent();
-            this.onkiszolgaloForm = onkisziolgaloForm;
+            this.onkiszolgaloForm = onkiszolgaloForm;
             this.adatbazis = adatbazis;
             lblNev.Text = nev;
+            onkiszolgaloForm.AdatbazisEllenorzes.Enabled = false;
         }
 
         private void btnKilep_Click(object sender, EventArgs e)
         {
             onkiszolgaloForm.NincsDolgozo();
             onkiszolgaloForm.kivalasztottTermek = -1;
+            onkiszolgaloForm.AdatbazisEllenorzes.Enabled = true;
             Close();
         }
 
@@ -34,6 +36,7 @@ namespace SajatOnkiszolgalo
         {
             if (onkiszolgaloForm.lbNev.Items.Count != 0)
             {
+                onkiszolgaloForm.AdatbazisEllenorzes.Enabled = false;
                 AdminGombokBeKi();
                 Hide();
             }

@@ -35,28 +35,19 @@ namespace SajatOnkiszolgalo
 
             Workbook workbook = new Workbook();
             workbook.LoadFromFile("sablon.xlsx");
-            PrintDialog dialog = new PrintDialog();
-            dialog.AllowPrintToFile = true;
-            dialog.AllowCurrentPage = true;
-            dialog.AllowSomePages = true;
-            dialog.AllowSelection = true;
-            dialog.UseEXDialog = true;
-            dialog.PrinterSettings.Duplex = Duplex.Simplex;
-            dialog.PrinterSettings.FromPage = 0;
-            dialog.PrinterSettings.ToPage = 8;
-            dialog.PrinterSettings.PrintRange = PrintRange.SomePages;
-            workbook.PrintDialog = dialog;
             PrintDocument pd = workbook.PrintDocument;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                pd.Print();
-            }
+            pd.Print();
+            onkiszolgaloForm.ujVasarlas();
+            Close();
+            KoszonjukVasarlas koszonjukVasarlasForm = new KoszonjukVasarlas();
+            koszonjukVasarlasForm.ShowDialog();
+            
 
         }
 
 
 
-        public static string filePath = @"C:\Users\nyb15KOZÁKL\Desktop\SajatOnkiszolgalo\SajatOnkiszolgalo\bin\Debug\sablon.xlsx";
+        public static string filePath = @"G:\Egyéb számítógépek\Saját számítógép\SajatOnkiszolgalo\SajatOnkiszolgalo\bin\Debug\sablon.xlsx";
         public void AddNewRowsToExcelFile()
         {
             Excel.Application xlApp = new Excel.Application();
@@ -108,7 +99,7 @@ namespace SajatOnkiszolgalo
                             int jelenlegiAr = Convert.ToInt32(ara * darab);
                             xlWorkSheet.Cells[index, 4] = $"{jelenlegiAr.ToString(new CultureInfo("en-us"))}";
                         }
-                        
+
                         index++;
                     }
                 }

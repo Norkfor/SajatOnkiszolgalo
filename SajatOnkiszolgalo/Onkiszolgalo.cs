@@ -39,11 +39,33 @@ namespace SajatOnkiszolgalo
             dolgozoi = new MunkaFelulet(this, segitseg);
             dolgozoi.Show();
             dolgozoi.btnEngedely.Enabled = false;
+            ujVasarlas();
+        }
+        public void ujVasarlas()
+        {
             lblTermek.Text = "";
             pbTermek.Image = null;
-
-
-
+            lbNev.Items.Clear();
+            lbAr.Items.Clear();
+            dolgozoi.lbNev.Items.Clear();
+            dolgozoi.lbAr.Items.Clear();
+            MagyarIdoVan = true;
+            osszesen = 0;
+            vasarloID = 0;
+            randomSzam = 0;
+            vanDolgozo = 0;
+            dolgozoID = 0;
+            kivalasztottTermek = -1;
+            kivalasztottNev = "";
+            dolgozoNev = "";
+            modositas = false;
+            jelenlegiVonalkod = 0;
+            jelenlegiSuly = 0;
+            lblOssz.Text = "Összesen: 0Ft";
+            RandomKodGeneralas();
+        }
+        private void RandomKodGeneralas()
+        {
             Random randomKod = new Random();
             randomSzam = Convert.ToInt64($"{2660}{randomKod.Next(11111, 99999)}");
             BarcodeWriter vonalkodIro = new BarcodeWriter() { Format = BarcodeFormat.AZTEC };
@@ -158,7 +180,6 @@ namespace SajatOnkiszolgalo
                 MySqlCommand dolgozo = new MySqlCommand($"UPDATE `dolgozok` SET `aktiv` = '0' WHERE `dolgozok`.`id` = '{dolgozoID}';", adatbazis.Conn);
                 dolgozo.ExecuteNonQuery();
                 vanDolgozo = 0;
-                AdatbazisEllenorzes.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -179,6 +200,7 @@ namespace SajatOnkiszolgalo
             DolgozoEllenorzo();
             if (vanDolgozo == 0)
             {
+                dolgozoi.ListboxFrissit();
                 ListboxDeklaralas();
                 JelenlegiTermekBeallitas();
             }
@@ -203,7 +225,7 @@ namespace SajatOnkiszolgalo
                     dolgozoID = olvasoDolgozo.GetInt32(1);
                     adatbazis.Conn.Close();
                     vanDolgozo = 1;
-                    AdatbazisEllenorzes.Enabled = false;
+
                     dolgozo = new frmDolgozo(dolgozoNev, this, adatbazis);
                     dolgozo.ShowDialog();
                     NincsDolgozo();
@@ -262,7 +284,7 @@ namespace SajatOnkiszolgalo
                         var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
                         adatbazis.Conn.Close();
                     }
-                    
+
                 }
                 adatbazis.Conn.Close();
             }
@@ -278,6 +300,7 @@ namespace SajatOnkiszolgalo
 
         public void ListboxDeklaralas()
         {
+
             try
             {
                 adatbazis.Conn.Open();
@@ -389,6 +412,7 @@ namespace SajatOnkiszolgalo
             }
         }
 
+
         private void lbNev_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbNev.SelectedIndex != -1)
@@ -410,12 +434,12 @@ namespace SajatOnkiszolgalo
                         kivalasztottNev = lbNev.SelectedItem.ToString().Substring(0, lbNev.SelectedItem.ToString().IndexOf('.') - 1);
                     }
                 }
-                
+
             }
             try
             {
                 adatbazis.Conn.Open();
-                string sqlJelenlegi = $"SELECT a.nev, a.mennyiseg, am.mertekegyseg, v.id FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE a.nev LIKE '%{kivalasztottNev}%' AND p.vonalkod_szam = '{randomSzam}';";
+                string sqlJelenlegi = $"SELECT a.nev, a.mennyiseg, am.mertekegyseg, v.id, a.gyumolcszoldseg, v.termekDarab FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE a.nev LIKE '%{kivalasztottNev}%' AND p.vonalkod_szam = '{randomSzam}';";
                 var parancsJelenlegi = new MySqlCommand(sqlJelenlegi, adatbazis.Conn);
                 var olvasoJelenlegi = parancsJelenlegi.ExecuteReader();
                 if (olvasoJelenlegi.HasRows)
@@ -425,10 +449,21 @@ namespace SajatOnkiszolgalo
                     double jelenlegiMennyiseg = olvasoJelenlegi.GetDouble(1);
                     string jelenlegiMertekegyseg = olvasoJelenlegi.GetString(2);
                     vasarloID = olvasoJelenlegi.GetInt32(3);
-                    
-                    lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
-                    pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
-                    adatbazis.Conn.Close();
+                    int gyumolcszoldseg = olvasoJelenlegi.GetInt32(4);
+                    double suly = olvasoJelenlegi.GetDouble(5);
+                    if (gyumolcszoldseg == 1)
+                    {
+                        lblTermek.Text = $"{jelenlegiNev} {suly}{jelenlegiMertekegyseg}";
+                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        adatbazis.Conn.Close();
+                    }
+                    else
+                    {
+                        lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
+                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        adatbazis.Conn.Close();
+                    }
+
                 }
                 adatbazis.Conn.Close();
             }
@@ -461,8 +496,7 @@ namespace SajatOnkiszolgalo
 
         private void btnTermekek_Click(object sender, EventArgs e)
         {
-            
-            AdatbazisEllenorzes.Enabled = false;
+
             Termekek frmTermekek = new Termekek(adatbazis, this);
             frmTermekek.ShowDialog();
         }
@@ -484,17 +518,46 @@ namespace SajatOnkiszolgalo
             {
                 adatbazis.Conn.Close();
             }
-            ListboxDeklaralas();
-            lbNev.SelectedIndex = lbNev.Items.Count-1;
-            kivalasztottNev = lbNev.SelectedItem.ToString();
-            JelenlegiTermekBeallitas();
+            try
+            {
+                adatbazis.Conn.Open();
+                string termekVanEllenoriz = $"SELECT v.arucikkekID FROM vasarlok as v INNER JOIN pultok as p ON v.pultokID = p.id WHERE p.vonalkod_szam = {randomSzam}";
+                var termekVanEllenorizParancs = new MySqlCommand(termekVanEllenoriz, adatbazis.Conn);
+                var olvasoTermekVanEllenorzes = termekVanEllenorizParancs.ExecuteReader();
+                if (olvasoTermekVanEllenorzes.HasRows)
+                {
+                    adatbazis.Conn.Close();
+                    ListboxDeklaralas();
+                    lbNev.SelectedIndex = lbNev.Items.Count - 1;
+                    kivalasztottNev = lbNev.SelectedItem.ToString();
+                    JelenlegiTermekBeallitas();
+
+                }
+                else
+                {
+                    adatbazis.Conn.Close();
+                    lbNev.Items.Clear();
+                    lbAr.Items.Clear();
+                    lblTermek.Text = "";
+                    pbTermek.Image = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hiba!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                adatbazis.Conn.Close();
+            }
+
         }
 
         private void btnFizetes_Click(object sender, EventArgs e)
         {
             Osszegzes OsszegzesForm = new Osszegzes(this, adatbazis);
             OsszegzesForm.ShowDialog();
-            
+
         }
     }
 }

@@ -53,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPillanat.AutoSize = true;
-            this.lblPillanat.Font = new System.Drawing.Font("Rounded Mplus 1c Bold", 18F, System.Drawing.FontStyle.Bold);
+            this.lblPillanat.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.lblPillanat.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblPillanat.Location = new System.Drawing.Point(3, 0);
             this.lblPillanat.Name = "lblPillanat";
@@ -84,6 +84,7 @@
             this.ClientSize = new System.Drawing.Size(563, 223);
             this.ControlBox = false;
             this.Controls.Add(this.guna2ShadowPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Segitseg_keres";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
