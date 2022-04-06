@@ -36,7 +36,14 @@ namespace SajatOnkiszolgalo
         private void SulyKiiras(string szam)
         {
             suly += szam;
-            lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
+            try
+            {
+                lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
+            }
+            catch (Exception)
+            {
+            }
+            
             if (szam != "0")
             {
                 btnHozzaad.Enabled = true;

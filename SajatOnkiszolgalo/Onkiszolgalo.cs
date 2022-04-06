@@ -494,6 +494,7 @@ namespace SajatOnkiszolgalo
         {
             Osszegzes OsszegzesForm = new Osszegzes(this);
             OsszegzesForm.ShowDialog();
+            
         }
     }
 }
