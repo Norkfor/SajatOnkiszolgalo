@@ -492,7 +492,7 @@ namespace SajatOnkiszolgalo
 
         private void btnFizetes_Click(object sender, EventArgs e)
         {
-            Osszegzes OsszegzesForm = new Osszegzes(this);
+            Osszegzes OsszegzesForm = new Osszegzes(this, adatbazis);
             OsszegzesForm.ShowDialog();
             
         }
