@@ -15,7 +15,7 @@ namespace SajatOnkiszolgalo
         DB adatbazis;
 
         bool MagyarIdoVan = true;
-        double osszesen;
+        public double osszesen;
         int lbNevSzeles;
         public int vasarloID = 0;
         public long randomSzam = 0;

@@ -5,6 +5,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
+using System.Globalization;
+using Spire.Xls;
+using System.Drawing.Printing;
 
 namespace SajatOnkiszolgalo
 {
@@ -12,7 +15,6 @@ namespace SajatOnkiszolgalo
     {
         Onkiszolgalo onkiszolgaloForm;
         DB adatbazis;
-        static double osszesen = 0;
         public Osszegzes(Onkiszolgalo onkiszolgaloForm, DB adatbazis)
         {
             InitializeComponent();
@@ -29,22 +31,31 @@ namespace SajatOnkiszolgalo
 
         private void btnFizetes_Click(object sender, EventArgs e)
         {
-            //Spire.Doc.Document doc = new Spire.Doc.Document();
-            //doc.LoadFromFile("sample.docx");
-            //PrintDialog dialog = new PrintDialog();
-            //dialog.AllowPrintToFile = true;
-            //dialog.AllowCurrentPage = true;
-            //dialog.AllowSomePages = true;
-            //dialog.UseEXDialog = true;
-            //doc.PrintDialog = dialog;
-            //PrintDocument printDoc = doc.PrintDocument;
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    printDoc.Print();
-
-            //}
             AddNewRowsToExcelFile();
+
+            Workbook workbook = new Workbook();
+            workbook.LoadFromFile("sablon.xlsx");
+            PrintDialog dialog = new PrintDialog();
+            dialog.AllowPrintToFile = true;
+            dialog.AllowCurrentPage = true;
+            dialog.AllowSomePages = true;
+            dialog.AllowSelection = true;
+            dialog.UseEXDialog = true;
+            dialog.PrinterSettings.Duplex = Duplex.Simplex;
+            dialog.PrinterSettings.FromPage = 0;
+            dialog.PrinterSettings.ToPage = 8;
+            dialog.PrinterSettings.PrintRange = PrintRange.SomePages;
+            workbook.PrintDialog = dialog;
+            PrintDocument pd = workbook.PrintDocument;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
+
         }
+
+
+
         public static string filePath = @"C:\Users\nyb15KOZÁKL\Desktop\SajatOnkiszolgalo\SajatOnkiszolgalo\bin\Debug\sablon.xlsx";
         public void AddNewRowsToExcelFile()
         {
@@ -53,7 +64,13 @@ namespace SajatOnkiszolgalo
                 Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
             Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
             Excel.Range xlRange = xlWorkSheet.UsedRange;
-
+            for (int i = 7; i <= 30; i++)
+            {
+                for (int j = 1; j <= 4; j++)
+                {
+                    xlWorkSheet.Cells[i, j] = "";
+                }
+            }
 
             try
             {
@@ -64,7 +81,6 @@ namespace SajatOnkiszolgalo
 
                 if (olvasoAru.HasRows)
                 {
-                    osszesen = 0;
                     int index = 7;
                     while (olvasoAru.Read())
                     {
@@ -76,17 +92,25 @@ namespace SajatOnkiszolgalo
                         int ara = olvasoAru.GetInt32(5);
                         double darab = olvasoAru.GetDouble(6);
                         int gyumolcszoldseg = olvasoAru.GetInt32(7);
-
-                        xlWorkSheet.Cells[index, 1] = $"{arunev}";
-                        xlWorkSheet.Cells[index, 2] = $"{darab}";
-                        xlWorkSheet.Cells[index, 3] = $"{ara}";
-                        xlWorkSheet.Cells[index, 4] = $"{ara * darab}";
-
-
-                        osszesen += ara * darab;
+                        if (gyumolcszoldseg == 1)
+                        {
+                            xlWorkSheet.Cells[index, 1] = $"{arunev}";
+                            xlWorkSheet.Cells[index, 2] = $"{darab.ToString(new CultureInfo("en-us"))} {mertekegyseg}";
+                            xlWorkSheet.Cells[index, 3] = $"{darab}*{ara}";
+                            int jelenlegiAr = Convert.ToInt32(ara * darab);
+                            xlWorkSheet.Cells[index, 4] = $"{jelenlegiAr.ToString(new CultureInfo("en-us"))}";
+                        }
+                        else
+                        {
+                            xlWorkSheet.Cells[index, 1] = $"{arunev}";
+                            xlWorkSheet.Cells[index, 2] = $"{mennyiseg.ToString(new CultureInfo("en-us"))} {mertekegyseg}";
+                            xlWorkSheet.Cells[index, 3] = $"{darab.ToString()}*{ara}";
+                            int jelenlegiAr = Convert.ToInt32(ara * darab);
+                            xlWorkSheet.Cells[index, 4] = $"{jelenlegiAr.ToString(new CultureInfo("en-us"))}";
+                        }
+                        
                         index++;
                     }
-                    xlWorkSheet.Cells[32, 5] = $"{osszesen}";
                 }
                 adatbazis.Conn.Close();
             }
