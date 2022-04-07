@@ -62,11 +62,13 @@ namespace SajatOnkiszolgalo
             jelenlegiVonalkod = 0;
             jelenlegiSuly = 0;
             lblOssz.Text = "Összesen: 0Ft";
+            btnFizetes.Enabled = false;
+            AdatbazisEllenorzes.Enabled = true;
             RandomKodGeneralas();
         }
         private void RandomKodGeneralas()
         {
-            Random randomKod = new Random();
+            Random randomKod = new Random(Guid.NewGuid().GetHashCode());
             randomSzam = Convert.ToInt64($"{2660}{randomKod.Next(11111, 99999)}");
             BarcodeWriter vonalkodIro = new BarcodeWriter() { Format = BarcodeFormat.AZTEC };
             pbVonalkod.Image = vonalkodIro.Write($"{randomSzam}");
@@ -285,7 +287,6 @@ namespace SajatOnkiszolgalo
                         var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
                         adatbazis.Conn.Close();
                     }
-
                 }
                 adatbazis.Conn.Close();
             }
@@ -314,7 +315,7 @@ namespace SajatOnkiszolgalo
                     lbNev.Items.Clear();
                     lbAr.Items.Clear();
                     osszesen = 0;
-
+                    btnFizetes.Enabled = true;
                     while (olvasoAru.Read())
                     {
                         int aruid = olvasoAru.GetInt32(0);
@@ -364,6 +365,10 @@ namespace SajatOnkiszolgalo
                         
 
                     }
+                }
+                else
+                {
+                    btnFizetes.Enabled = false;
                 }
                 adatbazis.Conn.Close();
             }

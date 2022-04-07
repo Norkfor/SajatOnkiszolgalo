@@ -22,14 +22,14 @@ namespace SajatOnkiszolgalo
             this.darab = darab;
             this.onkiszolgaloForm = onkiszolgaloForm;
             this.adatbazis = adatbazis;
-            lblDarab.Text = $"{this.darab} db";
+            
             if (onkiszolgaloForm.MagyarIdoVan)
             {
-                lblDarab.Text = "db";
+                lblDarab.Text = $"{this.darab} db";
             }
             else
             {
-                lblDarab.Text = "pcs";
+                lblDarab.Text = $"{this.darab} pcs";
             }
         }
 
