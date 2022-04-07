@@ -12,14 +12,26 @@ namespace SajatOnkiszolgalo
 {
     public partial class NincsTermek : Form
     {
-        public NincsTermek()
+        Onkiszolgalo onkiszolgaloForm;
+        public NincsTermek(Onkiszolgalo onkiszolgaloForm)
         {
             InitializeComponent();
+            this.onkiszolgaloForm = onkiszolgaloForm;
+            if (onkiszolgaloForm.MagyarIdoVan)
+            {
+                lblNincs.Text = "Jelenleg nincs hozzáadott termék az önkiszolgálóban. Kérem, olvasson be egy terméket az árucikk módosításához.";
+            }
+            else
+            {
+                lblNincs.Text = "There are currently no products added to the self-service. Please scan a product to change the item.";
+            }
         }
 
         private void btnMegsem_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+
     }
 }

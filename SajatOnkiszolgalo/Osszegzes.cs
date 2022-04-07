@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Globalization;
 using Spire.Xls;
 using System.Drawing.Printing;
+using System.IO;
 
 namespace SajatOnkiszolgalo
 {
@@ -15,6 +16,7 @@ namespace SajatOnkiszolgalo
     {
         Onkiszolgalo onkiszolgaloForm;
         DB adatbazis;
+        string eleresiUtvonal = Path.GetDirectoryName(Application.ExecutablePath);
         public Osszegzes(Onkiszolgalo onkiszolgaloForm, DB adatbazis)
         {
             InitializeComponent();
@@ -22,10 +24,24 @@ namespace SajatOnkiszolgalo
             this.adatbazis = adatbazis;
             lbNev.Items.AddRange(onkiszolgaloForm.lbNev.Items);
             lbAr.Items.AddRange(onkiszolgaloForm.lbAr.Items);
+            if (onkiszolgaloForm.MagyarIdoVan)
+            {
+                lblOsszegzes.Text = "Összegzés";
+                btnFizetes.Text = "Fizetés";
+                btnVissza.Text = "Vissza";
+            }
+            else
+            {
+                lblOsszegzes.Text = "Summery";
+                btnFizetes.Text = "Pay";
+                btnVissza.Text = "Back";
+
+            }
         }
 
         private void btnVissza_Click(object sender, EventArgs e)
         {
+            onkiszolgaloForm.AdatbazisEllenorzes.Enabled = true;
             Close();
         }
 
@@ -34,24 +50,21 @@ namespace SajatOnkiszolgalo
             AddNewRowsToExcelFile();
 
             Workbook workbook = new Workbook();
-            workbook.LoadFromFile("sablon.xlsx");
+            workbook.LoadFromFile(Path.Combine(eleresiUtvonal,"sablon.xlsx"));
             PrintDocument pd = workbook.PrintDocument;
             pd.Print();
             onkiszolgaloForm.ujVasarlas();
             Close();
-            KoszonjukVasarlas koszonjukVasarlasForm = new KoszonjukVasarlas();
+            KoszonjukVasarlas koszonjukVasarlasForm = new KoszonjukVasarlas(onkiszolgaloForm);
             koszonjukVasarlasForm.ShowDialog();
             
 
         }
 
-
-
-        public static string filePath = @"G:\Egyéb számítógépek\Saját számítógép\SajatOnkiszolgalo\SajatOnkiszolgalo\bin\Debug\sablon.xlsx";
         public void AddNewRowsToExcelFile()
         {
             Excel.Application xlApp = new Excel.Application();
-            Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(filePath, 0, false, 5, "", "", false,
+            Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(Path.Combine(eleresiUtvonal, "sablon.xlsx"), 0, false, 5, "", "", false,
                 Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
             Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
             Excel.Range xlRange = xlWorkSheet.UsedRange;
@@ -119,7 +132,7 @@ namespace SajatOnkiszolgalo
 
 
             xlApp.DisplayAlerts = false;
-            xlWorkBook.SaveAs(filePath, Excel.XlFileFormat.xlOpenXMLWorkbook,
+            xlWorkBook.SaveAs(Path.Combine(eleresiUtvonal, "sablon.xlsx"), Excel.XlFileFormat.xlOpenXMLWorkbook,
                 Missing.Value, Missing.Value, Missing.Value, Missing.Value, Excel.XlSaveAsAccessMode.xlNoChange,
                 Excel.XlSaveConflictResolution.xlLocalSessionChanges, Missing.Value, Missing.Value,
                 Missing.Value, Missing.Value);

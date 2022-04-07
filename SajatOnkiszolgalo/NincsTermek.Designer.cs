@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDarab = new System.Windows.Forms.Label();
+            this.lblNincs = new System.Windows.Forms.Label();
             this.btnMegsem = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -38,7 +38,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.lblDarab, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblNincs, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnMegsem, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -50,19 +50,19 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(550, 200);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lblDarab
+            // lblNincs
             // 
-            this.lblDarab.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblDarab.AutoSize = true;
-            this.lblDarab.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lblDarab.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblDarab.Location = new System.Drawing.Point(26, 23);
-            this.lblDarab.Name = "lblDarab";
-            this.lblDarab.Size = new System.Drawing.Size(497, 87);
-            this.lblDarab.TabIndex = 8;
-            this.lblDarab.Text = "Jelenleg nincs hozzáadott termék az önkiszolgálóban. Kérem, olvasson be egy termé" +
+            this.lblNincs.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblNincs.AutoSize = true;
+            this.lblNincs.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lblNincs.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblNincs.Location = new System.Drawing.Point(26, 23);
+            this.lblNincs.Name = "lblNincs";
+            this.lblNincs.Size = new System.Drawing.Size(497, 87);
+            this.lblNincs.TabIndex = 8;
+            this.lblNincs.Text = "Jelenleg nincs hozzáadott termék az önkiszolgálóban. Kérem, olvasson be egy termé" +
     "ket az árucikk módosításához.";
-            this.lblDarab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNincs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMegsem
             // 
@@ -108,6 +108,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         internal Guna.UI2.WinForms.Guna2Button btnMegsem;
-        private System.Windows.Forms.Label lblDarab;
+        private System.Windows.Forms.Label lblNincs;
     }
 }

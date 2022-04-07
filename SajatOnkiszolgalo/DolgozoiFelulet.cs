@@ -42,7 +42,7 @@ namespace SajatOnkiszolgalo
             }
             else
             {
-                NincsTermek nincsTermek = new NincsTermek();
+                NincsTermek nincsTermek = new NincsTermek(onkiszolgaloForm);
                 nincsTermek.ShowDialog();
             }
         }

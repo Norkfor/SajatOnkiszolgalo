@@ -13,9 +13,19 @@ namespace SajatOnkiszolgalo
     public partial class KoszonjukVasarlas : Form
     {
         static int ido = 4;
-        public KoszonjukVasarlas()
+        Onkiszolgalo onkiszolgaloForm;
+        public KoszonjukVasarlas(Onkiszolgalo onkiszolgaloForm)
         {
             InitializeComponent();
+            this.onkiszolgaloForm = onkiszolgaloForm;
+            if (onkiszolgaloForm.MagyarIdoVan)
+            {
+                lblKoszonjuk.Text = "Köszönjük a vásárlását!";
+            }
+            else
+            {
+                lblKoszonjuk.Text = "Thank you for your purchase!";
+            }
         }
 
         private void trVisszaSzamol_Tick(object sender, EventArgs e)

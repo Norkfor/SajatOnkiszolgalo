@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDarab = new System.Windows.Forms.Label();
+            this.lblKoszonjuk = new System.Windows.Forms.Label();
             this.trVisszaSzamol = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -40,28 +40,28 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.lblDarab, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblKoszonjuk, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 271F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 271);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // lblDarab
+            // lblKoszonjuk
             // 
-            this.lblDarab.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblDarab.AutoSize = true;
-            this.lblDarab.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lblDarab.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblDarab.Location = new System.Drawing.Point(140, 121);
-            this.lblDarab.Name = "lblDarab";
-            this.lblDarab.Size = new System.Drawing.Size(285, 29);
-            this.lblDarab.TabIndex = 8;
-            this.lblDarab.Text = "Köszönjük a vásárlását!";
-            this.lblDarab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblKoszonjuk.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblKoszonjuk.AutoSize = true;
+            this.lblKoszonjuk.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lblKoszonjuk.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblKoszonjuk.Location = new System.Drawing.Point(140, 121);
+            this.lblKoszonjuk.Name = "lblKoszonjuk";
+            this.lblKoszonjuk.Size = new System.Drawing.Size(285, 29);
+            this.lblKoszonjuk.TabIndex = 8;
+            this.lblKoszonjuk.Text = "Köszönjük a vásárlását!";
+            this.lblKoszonjuk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trVisszaSzamol
             // 
@@ -90,7 +90,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblDarab;
+        private System.Windows.Forms.Label lblKoszonjuk;
         private System.Windows.Forms.Timer trVisszaSzamol;
     }
 }

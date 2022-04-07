@@ -33,7 +33,7 @@
             this.btnVissza = new Guna.UI2.WinForms.Guna2Button();
             this.btnFizetes = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTetelek = new System.Windows.Forms.Label();
+            this.lblOsszegzes = new System.Windows.Forms.Label();
             this.tlpTetelek = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lbNev = new System.Windows.Forms.ListBox();
@@ -53,7 +53,7 @@
             this.tlpLent.ColumnCount = 3;
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.04636F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.95364F));
-            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.Controls.Add(this.btnVissza, 0, 0);
@@ -77,7 +77,7 @@
             this.btnVissza.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnVissza.ForeColor = System.Drawing.Color.Black;
             this.btnVissza.HoverState.Parent = this.btnVissza;
-            this.btnVissza.Location = new System.Drawing.Point(26, 13);
+            this.btnVissza.Location = new System.Drawing.Point(25, 13);
             this.btnVissza.Name = "btnVissza";
             this.btnVissza.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnVissza.ShadowDecoration.Depth = 10;
@@ -98,7 +98,7 @@
             this.btnFizetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnFizetes.ForeColor = System.Drawing.Color.Black;
             this.btnFizetes.HoverState.Parent = this.btnFizetes;
-            this.btnFizetes.Location = new System.Drawing.Point(490, 13);
+            this.btnFizetes.Location = new System.Drawing.Point(487, 13);
             this.btnFizetes.Name = "btnFizetes";
             this.btnFizetes.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnFizetes.ShadowDecoration.Depth = 10;
@@ -115,7 +115,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.04636F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.lblTetelek, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblOsszegzes, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -124,17 +124,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(674, 62);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // lblTetelek
+            // lblOsszegzes
             // 
-            this.lblTetelek.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTetelek.AutoSize = true;
-            this.lblTetelek.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lblTetelek.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblTetelek.Location = new System.Drawing.Point(266, 16);
-            this.lblTetelek.Name = "lblTetelek";
-            this.lblTetelek.Size = new System.Drawing.Size(141, 29);
-            this.lblTetelek.TabIndex = 1;
-            this.lblTetelek.Text = "Összegzés";
+            this.lblOsszegzes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblOsszegzes.AutoSize = true;
+            this.lblOsszegzes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lblOsszegzes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblOsszegzes.Location = new System.Drawing.Point(266, 16);
+            this.lblOsszegzes.Name = "lblOsszegzes";
+            this.lblOsszegzes.Size = new System.Drawing.Size(141, 29);
+            this.lblOsszegzes.TabIndex = 1;
+            this.lblOsszegzes.Text = "Összegzés";
             // 
             // tlpTetelek
             // 
@@ -255,7 +255,7 @@
         public Guna.UI2.WinForms.Guna2Button btnVissza;
         internal Guna.UI2.WinForms.Guna2Button btnFizetes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblTetelek;
+        private System.Windows.Forms.Label lblOsszegzes;
         public System.Windows.Forms.TableLayoutPanel tlpTetelek;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         internal System.Windows.Forms.ListBox lbNev;

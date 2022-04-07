@@ -20,6 +20,16 @@ namespace SajatOnkiszolgalo
             this.onkisziolgaloForm = onkisziolgaloForm;
             this.vonalkod = vonalkod;
             this.termekekForm = termekekForm;
+            if (onkisziolgaloForm.MagyarIdoVan)
+            {
+                btnKilep.Text = "Kilépés";
+                btnHozzaad.Text = "Hozzáadás";
+            }
+            else
+            {
+                btnKilep.Text = "Close";
+                btnHozzaad.Text = "Add quantity";
+            }
         }
         public SulyMegadas(DB adatbazis, Onkiszolgalo onkisziolgaloForm, long vonalkod, double jelenlegiSuly)
         {
@@ -30,8 +40,18 @@ namespace SajatOnkiszolgalo
             onkisziolgaloForm.modositas = true;
             suly = Convert.ToDouble(jelenlegiSuly * 1000).ToString();
             lblSuly.Text = $"{Convert.ToInt32(suly):N0}g\n({Convert.ToDouble(suly) / 1000}kg)";
-            btnHozzaad.Text = "Módosítás";
             btnHozzaad.Enabled = true;
+            if (onkisziolgaloForm.MagyarIdoVan)
+            {
+                btnKilep.Text = "Kilépés";
+                btnHozzaad.Text = "Módosítás";
+            }
+            else
+            {
+                btnKilep.Text = "Close";
+                btnHozzaad.Text = "Modify quantity";
+            }
+
         }
         private void SulyKiiras(string szam)
         {

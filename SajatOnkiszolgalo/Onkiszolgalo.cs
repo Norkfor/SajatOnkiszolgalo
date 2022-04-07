@@ -14,7 +14,7 @@ namespace SajatOnkiszolgalo
         MunkaFelulet dolgozoi;
         DB adatbazis;
 
-        bool MagyarIdoVan = true;
+        public bool MagyarIdoVan = true;
         public double osszesen;
         int lbNevSzeles;
         public int vasarloID = 0;
@@ -107,12 +107,13 @@ namespace SajatOnkiszolgalo
             btnMennyiseg.Text = "Mennyiség kiválasztása a jelenlegi terméknél";
             btnTermekek.Text = "Termékek";
             lblTetelek.Text = "Tételek";
-            lblOssz.Text = $"Összesen: {osszesen:N3}";
+            lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
             btnFizetes.Text = "Fizetés";
             segitseg.lblPillanat.Text = "Kérem, várjon egy pillanatot.\r\nMunkatársunk hamarosan megérkezik.\r\n";
             dolgozoi.lblPult.Text = "Pult 1";
             dolgozoi.btnEngedely.Text = "Engedélyezés";
             MagyarIdoVan = true;
+            
         }
 
         private void btnAngol_Click(object sender, EventArgs e)
@@ -123,7 +124,7 @@ namespace SajatOnkiszolgalo
             btnMennyiseg.Text = "Select quantity for current product";
             btnTermekek.Text = "Products";
             lblTetelek.Text = "Items";
-            lblOssz.Text = $"In all: {osszesen:N3}";
+            lblOssz.Text = $"In all: {osszesen:N0}Ft";
             btnFizetes.Text = "Pay";
             segitseg.lblPillanat.Text = "Please wait a moment.\r\nOur workmate will arrive soon.\r\n";
             dolgozoi.lblPult.Text = "Desk 1";
@@ -351,7 +352,16 @@ namespace SajatOnkiszolgalo
                             osszesen += ara * darab;
                             btnFizetes.Enabled = true;
                         }
-                        lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
+                        if (MagyarIdoVan)
+                        {
+                            lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
+                        }
+                        else
+                        {
+                            lblOssz.Text = $"In all: {osszesen:N0}Ft";
+
+                        }
+                        
 
                     }
                 }
@@ -407,7 +417,7 @@ namespace SajatOnkiszolgalo
             }
             else
             {
-                NincsTermek frmNincsTermek = new NincsTermek();
+                NincsTermek frmNincsTermek = new NincsTermek(this);
                 frmNincsTermek.ShowDialog();
             }
         }
@@ -555,6 +565,7 @@ namespace SajatOnkiszolgalo
 
         private void btnFizetes_Click(object sender, EventArgs e)
         {
+            AdatbazisEllenorzes.Enabled = false;
             Osszegzes OsszegzesForm = new Osszegzes(this, adatbazis);
             OsszegzesForm.ShowDialog();
 

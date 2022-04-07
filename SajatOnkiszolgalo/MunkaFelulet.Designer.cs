@@ -30,23 +30,23 @@ namespace SajatOnkiszolgalo
         private void InitializeComponent()
         {
             this.pnlEgybeBal = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnEngedely = new Guna.UI2.WinForms.Guna2Button();
-            this.tlpBal = new System.Windows.Forms.TableLayoutPanel();
-            this.lblPult = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpTetelek = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lbNev = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lbAr = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEngedely = new Guna.UI2.WinForms.Guna2Button();
+            this.tlpBal = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPult = new System.Windows.Forms.Label();
             this.pnlEgybeBal.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tlpBal.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tlpTetelek.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpBal.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEgybeBal
@@ -65,69 +65,6 @@ namespace SajatOnkiszolgalo
             this.pnlEgybeBal.ShadowDepth = 0;
             this.pnlEgybeBal.Size = new System.Drawing.Size(1014, 595);
             this.pnlEgybeBal.TabIndex = 7;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.btnEngedely, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 514);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 70);
-            this.tableLayoutPanel1.TabIndex = 8;
-            // 
-            // btnEngedely
-            // 
-            this.btnEngedely.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEngedely.Animated = true;
-            this.btnEngedely.BorderRadius = 4;
-            this.btnEngedely.CheckedState.Parent = this.btnEngedely;
-            this.btnEngedely.CustomImages.Parent = this.btnEngedely;
-            this.btnEngedely.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(106)))));
-            this.btnEngedely.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.btnEngedely.ForeColor = System.Drawing.Color.Black;
-            this.btnEngedely.HoverState.Parent = this.btnEngedely;
-            this.btnEngedely.Location = new System.Drawing.Point(414, 11);
-            this.btnEngedely.Name = "btnEngedely";
-            this.btnEngedely.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.btnEngedely.ShadowDecoration.Depth = 10;
-            this.btnEngedely.ShadowDecoration.Parent = this.btnEngedely;
-            this.btnEngedely.Size = new System.Drawing.Size(171, 47);
-            this.btnEngedely.TabIndex = 5;
-            this.btnEngedely.Text = "Engedélyezés";
-            this.btnEngedely.Click += new System.EventHandler(this.btnEngedely_Click);
-            // 
-            // tlpBal
-            // 
-            this.tlpBal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpBal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
-            this.tlpBal.ColumnCount = 1;
-            this.tlpBal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBal.Controls.Add(this.lblPult, 0, 0);
-            this.tlpBal.Location = new System.Drawing.Point(3, 3);
-            this.tlpBal.Name = "tlpBal";
-            this.tlpBal.RowCount = 1;
-            this.tlpBal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBal.Size = new System.Drawing.Size(1000, 63);
-            this.tlpBal.TabIndex = 6;
-            // 
-            // lblPult
-            // 
-            this.lblPult.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblPult.AutoSize = true;
-            this.lblPult.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lblPult.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPult.Location = new System.Drawing.Point(460, 17);
-            this.lblPult.Name = "lblPult";
-            this.lblPult.Size = new System.Drawing.Size(79, 29);
-            this.lblPult.TabIndex = 1;
-            this.lblPult.Text = "Pult 1";
             // 
             // tableLayoutPanel2
             // 
@@ -227,6 +164,69 @@ namespace SajatOnkiszolgalo
             this.lbAr.Size = new System.Drawing.Size(282, 377);
             this.lbAr.TabIndex = 0;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.btnEngedely, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 514);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 70);
+            this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // btnEngedely
+            // 
+            this.btnEngedely.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEngedely.Animated = true;
+            this.btnEngedely.BorderRadius = 4;
+            this.btnEngedely.CheckedState.Parent = this.btnEngedely;
+            this.btnEngedely.CustomImages.Parent = this.btnEngedely;
+            this.btnEngedely.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(106)))));
+            this.btnEngedely.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.btnEngedely.ForeColor = System.Drawing.Color.Black;
+            this.btnEngedely.HoverState.Parent = this.btnEngedely;
+            this.btnEngedely.Location = new System.Drawing.Point(414, 11);
+            this.btnEngedely.Name = "btnEngedely";
+            this.btnEngedely.ShadowDecoration.Color = System.Drawing.Color.Gray;
+            this.btnEngedely.ShadowDecoration.Depth = 10;
+            this.btnEngedely.ShadowDecoration.Parent = this.btnEngedely;
+            this.btnEngedely.Size = new System.Drawing.Size(171, 47);
+            this.btnEngedely.TabIndex = 5;
+            this.btnEngedely.Text = "Engedélyezés";
+            this.btnEngedely.Click += new System.EventHandler(this.btnEngedely_Click);
+            // 
+            // tlpBal
+            // 
+            this.tlpBal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpBal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
+            this.tlpBal.ColumnCount = 1;
+            this.tlpBal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBal.Controls.Add(this.lblPult, 0, 0);
+            this.tlpBal.Location = new System.Drawing.Point(3, 3);
+            this.tlpBal.Name = "tlpBal";
+            this.tlpBal.RowCount = 1;
+            this.tlpBal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBal.Size = new System.Drawing.Size(1000, 63);
+            this.tlpBal.TabIndex = 6;
+            // 
+            // lblPult
+            // 
+            this.lblPult.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblPult.AutoSize = true;
+            this.lblPult.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lblPult.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblPult.Location = new System.Drawing.Point(460, 17);
+            this.lblPult.Name = "lblPult";
+            this.lblPult.Size = new System.Drawing.Size(79, 29);
+            this.lblPult.TabIndex = 1;
+            this.lblPult.Text = "Pult 1";
+            // 
             // MunkaFelulet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,13 +238,13 @@ namespace SajatOnkiszolgalo
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dolgozói felület";
             this.pnlEgybeBal.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tlpBal.ResumeLayout(false);
-            this.tlpBal.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tlpTetelek.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tlpBal.ResumeLayout(false);
+            this.tlpBal.PerformLayout();
             this.ResumeLayout(false);
 
         }

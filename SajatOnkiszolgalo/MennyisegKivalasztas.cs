@@ -23,6 +23,14 @@ namespace SajatOnkiszolgalo
             this.onkiszolgaloForm = onkiszolgaloForm;
             this.adatbazis = adatbazis;
             lblDarab.Text = $"{this.darab} db";
+            if (onkiszolgaloForm.MagyarIdoVan)
+            {
+                lblDarab.Text = "db";
+            }
+            else
+            {
+                lblDarab.Text = "pcs";
+            }
         }
 
         private void btnMegsem_Click(object sender, EventArgs e)
@@ -33,7 +41,14 @@ namespace SajatOnkiszolgalo
         private void btnPlusz_Click(object sender, EventArgs e)
         {
             darab++;
-            lblDarab.Text = $"{darab} db";
+            if (onkiszolgaloForm.MagyarIdoVan)
+            {
+                lblDarab.Text = $"{darab} db";
+            }
+            else
+            {
+                lblDarab.Text = $"{darab} pcs";
+            }
         }
 
         private void btnMinusz_Click(object sender, EventArgs e)
@@ -41,7 +56,14 @@ namespace SajatOnkiszolgalo
             if (darab > 1)
             {
                 darab--;
-                lblDarab.Text = $"{darab} db";
+                if (onkiszolgaloForm.MagyarIdoVan)
+                {
+                    lblDarab.Text = $"{darab} db";
+                }
+                else
+                {
+                    lblDarab.Text = $"{darab} pcs";
+                }
             }
         }
 
