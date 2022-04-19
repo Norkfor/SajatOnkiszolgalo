@@ -103,6 +103,12 @@ namespace SajatOnkiszolgalo
         }
         private void btnMagyar_Click(object sender, EventArgs e)
         {
+            Magyar();
+
+        }
+
+        private void Magyar()
+        {
             btnMagyar.BorderColor = Color.Cyan;
             btnAngol.BorderColor = Color.Empty;
             btnSegitseg.Text = "Segítségkérés egy munkatársunktól";
@@ -112,13 +118,15 @@ namespace SajatOnkiszolgalo
             lblOssz.Text = $"Összesen: {osszesen:N0}Ft";
             btnFizetes.Text = "Fizetés";
             segitseg.lblPillanat.Text = "Kérem, várjon egy pillanatot.\r\nMunkatársunk hamarosan megérkezik.\r\n";
-            dolgozoi.lblPult.Text = "Pult 1";
-            dolgozoi.btnEngedely.Text = "Engedélyezés";
             MagyarIdoVan = true;
-            
         }
 
         private void btnAngol_Click(object sender, EventArgs e)
+        {
+            Angol();
+        }
+
+        private void Angol()
         {
             btnAngol.BorderColor = Color.Cyan;
             btnMagyar.BorderColor = Color.Empty;
@@ -129,10 +137,9 @@ namespace SajatOnkiszolgalo
             lblOssz.Text = $"In all: {osszesen:N0}Ft";
             btnFizetes.Text = "Pay";
             segitseg.lblPillanat.Text = "Please wait a moment.\r\nOur workmate will arrive soon.\r\n";
-            dolgozoi.lblPult.Text = "Desk 1";
-            dolgozoi.btnEngedely.Text = "Enable";
             MagyarIdoVan = false;
         }
+
         private void Ido_Tick(object sender, EventArgs e)
         {
             IdoFormatum();
@@ -251,7 +258,7 @@ namespace SajatOnkiszolgalo
             try
             {
                 adatbazis.Conn.Open();
-                string sqlJelenlegi = $"SELECT v.id, a.nev, a.mennyiseg, am.mertekegyseg, v.termekDarab, a.gyumolcszoldseg FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE v.aktiv = 1 AND p.vonalkod_szam = '{randomSzam}';";
+                string sqlJelenlegi = $"SELECT v.id, a.nev, a.mennyiseg, am.mertekegyseg, v.termekDarab, a.gyumolcszoldseg, a.kep FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE v.aktiv = 1 AND p.vonalkod_szam = '{randomSzam}';";
                 var parancsJelenlegi = new MySqlCommand(sqlJelenlegi, adatbazis.Conn);
                 var olvasoJelenlegi = parancsJelenlegi.ExecuteReader();
                 if (olvasoJelenlegi.HasRows)
@@ -263,29 +270,31 @@ namespace SajatOnkiszolgalo
                     string jelenlegiMertekegyseg = olvasoJelenlegi.GetString(3);
                     double suly = olvasoJelenlegi.GetDouble(4);
                     int gyumolcszoldseg = olvasoJelenlegi.GetInt32(5);
+                    Byte[] kep = (Byte[])olvasoJelenlegi.GetValue(6);
                     jelenlegiSuly = suly;
                     if (gyumolcszoldseg == 0)
                     {
                         lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
-                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        pbTermek.Image = ByteKepbe(kep);
                         adatbazis.Conn.Close();
                         adatbazis.Conn.Open();
                         string sqlNemAktiv = $"UPDATE `vasarlok` SET `aktiv` = '0' WHERE `vasarlok`.`id` = {vasarloID};";
                         var parancsNemAktiv = new MySqlCommand(sqlNemAktiv, adatbazis.Conn);
                         var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
                         adatbazis.Conn.Close();
-
+                        btnTermekTorlese.Enabled = true;
                     }
                     else
                     {
                         lblTermek.Text = $"{jelenlegiNev} {suly}{jelenlegiMertekegyseg}";
-                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        pbTermek.Image = ByteKepbe(kep);
                         adatbazis.Conn.Close();
                         adatbazis.Conn.Open();
                         string sqlNemAktiv = $"UPDATE `vasarlok` SET `aktiv` = '0' WHERE `vasarlok`.`id` = {vasarloID};";
                         var parancsNemAktiv = new MySqlCommand(sqlNemAktiv, adatbazis.Conn);
                         var olvasoNemAktiv = parancsNemAktiv.ExecuteNonQuery();
                         adatbazis.Conn.Close();
+                        btnTermekTorlese.Enabled = true;
                     }
                 }
                 adatbazis.Conn.Close();
@@ -299,7 +308,15 @@ namespace SajatOnkiszolgalo
                 adatbazis.Conn.Close();
             }
         }
-
+        public static Bitmap ByteKepbe(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
+        }
         public void ListboxDeklaralas()
         {
 
@@ -466,10 +483,11 @@ namespace SajatOnkiszolgalo
                     vasarloID = olvasoJelenlegi.GetInt32(3);
                     int gyumolcszoldseg = olvasoJelenlegi.GetInt32(4);
                     double suly = olvasoJelenlegi.GetDouble(5);
+                    Byte[] kep = (Byte[])olvasoJelenlegi.GetValue(6);
                     if (gyumolcszoldseg == 1)
                     {
                         lblTermek.Text = $"{jelenlegiNev} {suly}{jelenlegiMertekegyseg}";
-                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        pbTermek.Image = ByteKepbe(kep);
                         adatbazis.Conn.Close();
                     }
                     else
@@ -550,6 +568,19 @@ namespace SajatOnkiszolgalo
                 }
                 else
                 {
+                    osszesen = 0;
+                    if (MagyarIdoVan)
+                    {
+                        Magyar();
+                    }
+                    else
+                    {
+                        Angol();
+                    }
+                    
+                   
+                    btnFizetes.Enabled = false;
+                    btnTermekTorlese.Enabled = false;
                     adatbazis.Conn.Close();
                     lbNev.Items.Clear();
                     lbAr.Items.Clear();
@@ -570,9 +601,17 @@ namespace SajatOnkiszolgalo
 
         private void btnFizetes_Click(object sender, EventArgs e)
         {
-            AdatbazisEllenorzes.Enabled = false;
-            Osszegzes OsszegzesForm = new Osszegzes(this, adatbazis);
-            OsszegzesForm.ShowDialog();
+            if (vanDolgozo == 1)
+            {
+
+            }
+            else
+            {
+                AdatbazisEllenorzes.Enabled = false;
+                Osszegzes OsszegzesForm = new Osszegzes(this, adatbazis);
+                OsszegzesForm.ShowDialog();
+            }
+            
 
         }
     }

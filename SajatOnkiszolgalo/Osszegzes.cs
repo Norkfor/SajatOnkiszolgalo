@@ -29,13 +29,14 @@ namespace SajatOnkiszolgalo
                 lblOsszegzes.Text = "Összegzés";
                 btnFizetes.Text = "Fizetés";
                 btnVissza.Text = "Vissza";
+                lblOssz.Text = onkiszolgaloForm.lblOssz.Text;
             }
             else
             {
                 lblOsszegzes.Text = "Summery";
                 btnFizetes.Text = "Pay";
                 btnVissza.Text = "Back";
-
+                lblOssz.Text = onkiszolgaloForm.lblOssz.Text;
             }
         }
 

@@ -30,22 +30,22 @@ namespace SajatOnkiszolgalo
         private void InitializeComponent()
         {
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpTetelek = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbAr = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbNev = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnEngedely = new Guna.UI2.WinForms.Guna2Button();
             this.tlpBal = new System.Windows.Forms.TableLayoutPanel();
             this.lblPult = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEngedely = new Guna.UI2.WinForms.Guna2Button();
+            this.tlpTetelek = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbNev = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbAr = new System.Windows.Forms.ListBox();
             this.pnlEgybeBal = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tlpTetelek.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.tlpBal.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpTetelek.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.pnlEgybeBal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,86 +68,33 @@ namespace SajatOnkiszolgalo
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1006, 587);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // tlpTetelek
+            // tlpBal
             // 
-            this.tlpTetelek.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tlpBal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpTetelek.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tlpTetelek.ColumnCount = 2;
-            this.tlpTetelek.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tlpTetelek.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpTetelek.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tlpTetelek.Controls.Add(this.tableLayoutPanel4, 1, 0);
-            this.tlpTetelek.Location = new System.Drawing.Point(3, 68);
-            this.tlpTetelek.Name = "tlpTetelek";
-            this.tlpTetelek.Padding = new System.Windows.Forms.Padding(10);
-            this.tlpTetelek.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tlpTetelek.RowCount = 1;
-            this.tlpTetelek.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTetelek.Size = new System.Drawing.Size(1000, 440);
-            this.tlpTetelek.TabIndex = 9;
+            this.tlpBal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
+            this.tlpBal.ColumnCount = 1;
+            this.tlpBal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBal.Controls.Add(this.lblPult, 0, 0);
+            this.tlpBal.Location = new System.Drawing.Point(3, 3);
+            this.tlpBal.Name = "tlpBal";
+            this.tlpBal.RowCount = 1;
+            this.tlpBal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBal.Size = new System.Drawing.Size(1000, 59);
+            this.tlpBal.TabIndex = 6;
             // 
-            // tableLayoutPanel4
+            // lblPult
             // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.lbAr, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(699, 13);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(288, 414);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // lbAr
-            // 
-            this.lbAr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbAr.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbAr.Enabled = false;
-            this.lbAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lbAr.FormattingEnabled = true;
-            this.lbAr.ItemHeight = 29;
-            this.lbAr.Location = new System.Drawing.Point(3, 3);
-            this.lbAr.Name = "lbAr";
-            this.lbAr.Size = new System.Drawing.Size(282, 406);
-            this.lbAr.TabIndex = 0;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.lbNev, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(13, 13);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(680, 414);
-            this.tableLayoutPanel3.TabIndex = 0;
-            // 
-            // lbNev
-            // 
-            this.lbNev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbNev.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbNev.Enabled = false;
-            this.lbNev.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lbNev.FormattingEnabled = true;
-            this.lbNev.ItemHeight = 29;
-            this.lbNev.Location = new System.Drawing.Point(3, 3);
-            this.lbNev.Name = "lbNev";
-            this.lbNev.Size = new System.Drawing.Size(674, 406);
-            this.lbNev.TabIndex = 0;
+            this.lblPult.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblPult.AutoSize = true;
+            this.lblPult.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lblPult.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblPult.Location = new System.Drawing.Point(460, 15);
+            this.lblPult.Name = "lblPult";
+            this.lblPult.Size = new System.Drawing.Size(79, 29);
+            this.lblPult.TabIndex = 1;
+            this.lblPult.Text = "Pult 1";
             // 
             // tableLayoutPanel1
             // 
@@ -186,33 +133,86 @@ namespace SajatOnkiszolgalo
             this.btnEngedely.Text = "Engedélyezés";
             this.btnEngedely.Click += new System.EventHandler(this.btnEngedely_Click);
             // 
-            // tlpBal
+            // tlpTetelek
             // 
-            this.tlpBal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tlpTetelek.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpBal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
-            this.tlpBal.ColumnCount = 1;
-            this.tlpBal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBal.Controls.Add(this.lblPult, 0, 0);
-            this.tlpBal.Location = new System.Drawing.Point(3, 3);
-            this.tlpBal.Name = "tlpBal";
-            this.tlpBal.RowCount = 1;
-            this.tlpBal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBal.Size = new System.Drawing.Size(1000, 59);
-            this.tlpBal.TabIndex = 6;
+            this.tlpTetelek.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tlpTetelek.ColumnCount = 2;
+            this.tlpTetelek.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tlpTetelek.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tlpTetelek.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.tlpTetelek.Controls.Add(this.tableLayoutPanel4, 1, 0);
+            this.tlpTetelek.Location = new System.Drawing.Point(3, 68);
+            this.tlpTetelek.Name = "tlpTetelek";
+            this.tlpTetelek.Padding = new System.Windows.Forms.Padding(10);
+            this.tlpTetelek.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tlpTetelek.RowCount = 1;
+            this.tlpTetelek.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpTetelek.Size = new System.Drawing.Size(1000, 440);
+            this.tlpTetelek.TabIndex = 9;
             // 
-            // lblPult
+            // tableLayoutPanel3
             // 
-            this.lblPult.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblPult.AutoSize = true;
-            this.lblPult.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.lblPult.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPult.Location = new System.Drawing.Point(460, 15);
-            this.lblPult.Name = "lblPult";
-            this.lblPult.Size = new System.Drawing.Size(79, 29);
-            this.lblPult.TabIndex = 1;
-            this.lblPult.Text = "Pult 1";
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.lbNev, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(13, 13);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(680, 414);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // lbNev
+            // 
+            this.lbNev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbNev.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbNev.Enabled = false;
+            this.lbNev.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbNev.FormattingEnabled = true;
+            this.lbNev.ItemHeight = 29;
+            this.lbNev.Location = new System.Drawing.Point(3, 3);
+            this.lbNev.Name = "lbNev";
+            this.lbNev.Size = new System.Drawing.Size(674, 406);
+            this.lbNev.TabIndex = 0;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.lbAr, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(699, 13);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(288, 414);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // lbAr
+            // 
+            this.lbAr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbAr.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbAr.Enabled = false;
+            this.lbAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbAr.FormattingEnabled = true;
+            this.lbAr.ItemHeight = 29;
+            this.lbAr.Location = new System.Drawing.Point(3, 3);
+            this.lbAr.Name = "lbAr";
+            this.lbAr.Size = new System.Drawing.Size(282, 406);
+            this.lbAr.TabIndex = 0;
             // 
             // pnlEgybeBal
             // 
@@ -242,12 +242,12 @@ namespace SajatOnkiszolgalo
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dolgozói felület";
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tlpTetelek.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.tlpBal.ResumeLayout(false);
             this.tlpBal.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tlpTetelek.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.pnlEgybeBal.ResumeLayout(false);
             this.ResumeLayout(false);
 

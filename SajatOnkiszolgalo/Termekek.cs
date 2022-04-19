@@ -27,15 +27,14 @@ namespace SajatOnkiszolgalo
             this.onkisziolgaloForm = onkisziolgaloForm;
             string eleresiUtvonal = Path.GetDirectoryName(Application.ExecutablePath);
             TableLayoutPanel panel = new TableLayoutPanel() { Dock = DockStyle.Fill };
+            tlp.Controls.Add(panel, 0, 0);
             panel.ColumnCount = 3;
             panel.RowCount = 1;
             
-            
-
             try
             {
                 adatbazis.Conn.Open();
-                string sqlJelenlegi = $"SELECT a.nev, a.vonalkod_szam, a.gyumolcszoldseg, a.mennyiseg, am.mertekegyseg FROM arucikkek as a JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id WHERE nincsVonalkod = 1;";
+                string sqlJelenlegi = $"SELECT a.nev, a.vonalkod_szam, a.gyumolcszoldseg, a.mennyiseg, am.mertekegyseg, a.kep FROM arucikkek as a JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id WHERE nincsVonalkod = 1;";
                 var parancsJelenlegi = new MySqlCommand(sqlJelenlegi, adatbazis.Conn);
                 var olvasoJelenlegi = parancsJelenlegi.ExecuteReader();
                 if (olvasoJelenlegi.HasRows)
@@ -56,9 +55,10 @@ namespace SajatOnkiszolgalo
                         int gyumolcszoldseg = olvasoJelenlegi.GetInt32(2);
                         double mennyiseg = olvasoJelenlegi.GetDouble(3);
                         string mertekegyseg = olvasoJelenlegi.GetString(4);
+                        Byte[] kep = (Byte[]) olvasoJelenlegi.GetValue(5);
                         if (gyumolcszoldseg == 0)
                         {
-                            BunifuTileButton gomb = new BunifuTileButton() { BackColor = Color.FromArgb(26, 37, 47), color = Color.FromArgb(26, 37, 47), colorActive = Color.FromArgb(55, 81, 108), Cursor = Cursors.Hand, Font = new Font("Century Gothic", 15.75F), ForeColor = Color.White, Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{nev}.jpg")), ImagePosition = 20, ImageZoom = 50, LabelPosition = 41, LabelText = $"{nev} {mennyiseg}{mertekegyseg}", Size = new Size(150, 150), Anchor = AnchorStyles.None, Name = Convert.ToString(vonalkodSzam) };
+                            BunifuTileButton gomb = new BunifuTileButton() { BackColor = Color.FromArgb(26, 37, 47), color = Color.FromArgb(26, 37, 47), colorActive = Color.FromArgb(55, 81, 108), Cursor = Cursors.Hand, Font = new Font("Century Gothic", 15.75F), ForeColor = Color.White, Image = ByteKepbe(kep), ImagePosition = 20, ImageZoom = 50, LabelPosition = 41, LabelText = $"{nev} {mennyiseg}{mertekegyseg}", Size = new Size(150, 150), Anchor = AnchorStyles.None, Name = Convert.ToString(vonalkodSzam) };
 
                             panel.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
                             panel.Controls.Add(gomb, j, i);
@@ -66,16 +66,13 @@ namespace SajatOnkiszolgalo
                         }
                         else
                         {
-                            BunifuTileButton gomb = new BunifuTileButton() { BackColor = Color.FromArgb(26, 37, 47), color = Color.FromArgb(26, 37, 47), colorActive = Color.FromArgb(55, 81, 108), Cursor = Cursors.Hand, Font = new Font("Century Gothic", 15.75F), ForeColor = Color.White, Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{nev}.jpg")), ImagePosition = 20, ImageZoom = 50, LabelPosition = 41, LabelText = nev, Size = new Size(150, 150), Anchor = AnchorStyles.None, Name = Convert.ToString(vonalkodSzam) };
-
+                            BunifuTileButton gomb = new BunifuTileButton() { BackColor = Color.FromArgb(26, 37, 47), color = Color.FromArgb(26, 37, 47), colorActive = Color.FromArgb(55, 81, 108), Cursor = Cursors.Hand, Font = new Font("Century Gothic", 15.75F), ForeColor = Color.White, Image = ByteKepbe(kep), ImagePosition = 20, ImageZoom = 50, LabelPosition = 41, LabelText = nev, Size = new Size(150, 150), Anchor = AnchorStyles.None, Name = Convert.ToString(vonalkodSzam) };
                             panel.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
                             panel.Controls.Add(gomb, j, i);
                             gomb.Click += new EventHandler(click);
                         }
-                        
                         j++;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -86,16 +83,16 @@ namespace SajatOnkiszolgalo
             {
                 adatbazis.Conn.Close();
             }
-            
-            
-            
-
-
-            this.Controls.Add(panel);
-            panel.Dock = DockStyle.Fill;
-
         }
-
+        public static Bitmap ByteKepbe(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
+        }
         private void click(object sender, EventArgs e)
         {
 
@@ -213,9 +210,9 @@ namespace SajatOnkiszolgalo
             
         }
 
-        private void Termekek_Load(object sender, EventArgs e)
+        private void btnVissza_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

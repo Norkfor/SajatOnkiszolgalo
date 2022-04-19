@@ -35,6 +35,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblOsszegzes = new System.Windows.Forms.Label();
             this.tlpTetelek = new System.Windows.Forms.TableLayoutPanel();
+            this.lblOssz = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lbNev = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,7 +54,7 @@
             this.tlpLent.ColumnCount = 3;
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.04636F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.95364F));
-            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
+            this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 234F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpLent.Controls.Add(this.btnVissza, 0, 0);
@@ -77,7 +78,7 @@
             this.btnVissza.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnVissza.ForeColor = System.Drawing.Color.Black;
             this.btnVissza.HoverState.Parent = this.btnVissza;
-            this.btnVissza.Location = new System.Drawing.Point(25, 13);
+            this.btnVissza.Location = new System.Drawing.Point(24, 13);
             this.btnVissza.Name = "btnVissza";
             this.btnVissza.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnVissza.ShadowDecoration.Depth = 10;
@@ -98,7 +99,7 @@
             this.btnFizetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.btnFizetes.ForeColor = System.Drawing.Color.Black;
             this.btnFizetes.HoverState.Parent = this.btnFizetes;
-            this.btnFizetes.Location = new System.Drawing.Point(487, 13);
+            this.btnFizetes.Location = new System.Drawing.Point(486, 13);
             this.btnFizetes.Name = "btnFizetes";
             this.btnFizetes.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.btnFizetes.ShadowDecoration.Depth = 10;
@@ -142,6 +143,7 @@
             this.tlpTetelek.ColumnCount = 2;
             this.tlpTetelek.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tlpTetelek.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tlpTetelek.Controls.Add(this.lblOssz, 0, 1);
             this.tlpTetelek.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tlpTetelek.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tlpTetelek.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -149,10 +151,24 @@
             this.tlpTetelek.Name = "tlpTetelek";
             this.tlpTetelek.Padding = new System.Windows.Forms.Padding(10);
             this.tlpTetelek.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tlpTetelek.RowCount = 1;
+            this.tlpTetelek.RowCount = 2;
             this.tlpTetelek.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpTetelek.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tlpTetelek.Size = new System.Drawing.Size(674, 546);
             this.tlpTetelek.TabIndex = 3;
+            // 
+            // lblOssz
+            // 
+            this.lblOssz.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblOssz.AutoSize = true;
+            this.lblOssz.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblOssz.ForeColor = System.Drawing.Color.Black;
+            this.lblOssz.Location = new System.Drawing.Point(25, 505);
+            this.lblOssz.Margin = new System.Windows.Forms.Padding(15, 0, 3, 0);
+            this.lblOssz.Name = "lblOssz";
+            this.lblOssz.Size = new System.Drawing.Size(123, 25);
+            this.lblOssz.TabIndex = 1;
+            this.lblOssz.Text = "Összesen:";
             // 
             // tableLayoutPanel3
             // 
@@ -166,7 +182,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(451, 520);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(451, 483);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // lbNev
@@ -181,7 +197,7 @@
             this.lbNev.ItemHeight = 29;
             this.lbNev.Location = new System.Drawing.Point(3, 3);
             this.lbNev.Name = "lbNev";
-            this.lbNev.Size = new System.Drawing.Size(445, 493);
+            this.lbNev.Size = new System.Drawing.Size(445, 464);
             this.lbNev.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -197,7 +213,7 @@
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(191, 520);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(191, 483);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // lbAr
@@ -212,7 +228,7 @@
             this.lbAr.ItemHeight = 29;
             this.lbAr.Location = new System.Drawing.Point(3, 3);
             this.lbAr.Name = "lbAr";
-            this.lbAr.Size = new System.Drawing.Size(185, 493);
+            this.lbAr.Size = new System.Drawing.Size(185, 464);
             this.lbAr.TabIndex = 0;
             // 
             // printPreviewDialog1
@@ -243,6 +259,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tlpTetelek.ResumeLayout(false);
+            this.tlpTetelek.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -262,5 +279,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         internal System.Windows.Forms.ListBox lbAr;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Label lblOssz;
     }
 }
