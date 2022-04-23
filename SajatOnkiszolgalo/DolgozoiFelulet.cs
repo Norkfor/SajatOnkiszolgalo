@@ -7,59 +7,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql;
 
 namespace SajatOnkiszolgalo
 {
-    public partial class frmDolgozo : Form
+    public partial class DolgozoiFelulet : Form
     {
         private Onkiszolgalo onkiszolgaloForm;
-        DB adatbazis;
-        public frmDolgozo(string nev, Onkiszolgalo onkiszolgaloForm, DB adatbazis)
+        private Segitseg_keres segitseg;
+        public DolgozoiFelulet(Onkiszolgalo onkiszolgaloForm, Segitseg_keres segitseg)
         {
             InitializeComponent();
+            this.segitseg = segitseg;
             this.onkiszolgaloForm = onkiszolgaloForm;
-            this.adatbazis = adatbazis;
-            lblNev.Text = nev;
-            onkiszolgaloForm.AdatbazisEllenorzes.Enabled = false;
-        }
-
-        private void btnKilep_Click(object sender, EventArgs e)
-        {
-            onkiszolgaloForm.NincsDolgozo();
-            onkiszolgaloForm.kivalasztottTermek = -1;
-            onkiszolgaloForm.AdatbazisEllenorzes.Enabled = true;
-            Close();
-        }
-
-        private void btnTermekModosit_Click(object sender, EventArgs e)
-        {
-            if (onkiszolgaloForm.lbNev.Items.Count != 0)
+            
+            if (Screen.AllScreens.Length > 1)
             {
-                onkiszolgaloForm.AdatbazisEllenorzes.Enabled = false;
-                AdminGombokBeKi();
-                Hide();
-            }
-            else
-            {
-                NincsTermek nincsTermek = new NincsTermek(onkiszolgaloForm);
-                nincsTermek.ShowDialog();
+                if (WindowState == FormWindowState.Normal || WindowState == FormWindowState.Minimized)
+                {
+                    WindowState = FormWindowState.Maximized;
+                }
+                Location = Screen.AllScreens[1].WorkingArea.Location;
             }
         }
 
-        public void AdminGombokBeKi()
+        public void ListboxFrissit()
         {
-            onkiszolgaloForm.lbAr.Enabled = !onkiszolgaloForm.lbAr.Enabled;
-            onkiszolgaloForm.lbNev.Enabled = !onkiszolgaloForm.lbNev.Enabled;
-            onkiszolgaloForm.tlpTermekTorles.Visible = !onkiszolgaloForm.tlpTermekTorles.Visible;
-            onkiszolgaloForm.btnKilepes.Visible = !onkiszolgaloForm.btnKilepes.Visible;
-            onkiszolgaloForm.btnSegitseg.Visible = !onkiszolgaloForm.btnSegitseg.Visible;
+            lbNev.Items.Clear();
+            lbAr.Items.Clear();
+            lbNev.Items.AddRange(onkiszolgaloForm.lbNev.Items);
+            lbAr.Items.AddRange(onkiszolgaloForm.lbAr.Items);
         }
 
-        private void btnKeziBevitel_Click(object sender, EventArgs e)
+        private void btnEngedely_Click(object sender, EventArgs e)
         {
-            KeziBevitel frmKeziBevitel = new KeziBevitel(adatbazis, onkiszolgaloForm);
-            frmKeziBevitel.ShowDialog();
+            segitseg.Hide();
+            onkiszolgaloForm.Enabled = true;
+            btnEngedely.Enabled = false;
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace SajatOnkiszolgalo
     public partial class Onkiszolgalo : Form
     {
         Segitseg_keres segitseg = new Segitseg_keres();
-        MunkaFelulet dolgozoi;
+        DolgozoiFelulet dolgozoi;
         DB adatbazis;
 
         public bool MagyarIdoVan = true;
@@ -24,7 +24,6 @@ namespace SajatOnkiszolgalo
         public int kivalasztottTermek = -1;
         public string kivalasztottNev = "";
         string dolgozoNev = "";
-        string eleresiUtvonal = Path.GetDirectoryName(Application.ExecutablePath);
         public bool modositas = false;
         public long jelenlegiVonalkod = 0;
         public double jelenlegiSuly = 0;
@@ -36,7 +35,7 @@ namespace SajatOnkiszolgalo
             InitializeComponent();
             adatbazis = new DB();
             onKiszolgaloMegjelenit();
-            dolgozoi = new MunkaFelulet(this, segitseg);
+            dolgozoi = new DolgozoiFelulet(this, segitseg);
             dolgozoi.Show();
             dolgozoi.btnEngedely.Enabled = false;
             ujVasarlas();
@@ -69,7 +68,7 @@ namespace SajatOnkiszolgalo
         private void RandomKodGeneralas()
         {
             Random randomKod = new Random(Guid.NewGuid().GetHashCode());
-            randomSzam = Convert.ToInt64($"{2660}{randomKod.Next(11111, 99999)}");
+            randomSzam = Convert.ToInt64($"{2660}{randomKod.Next(11111111, 99999999)}");
             BarcodeWriter vonalkodIro = new BarcodeWriter() { Format = BarcodeFormat.AZTEC };
             pbVonalkod.Image = vonalkodIro.Write($"{randomSzam}");
             try
@@ -106,6 +105,10 @@ namespace SajatOnkiszolgalo
             Magyar();
 
         }
+        private void btnAngol_Click(object sender, EventArgs e)
+        {
+            Angol();
+        }
 
         private void Magyar()
         {
@@ -120,12 +123,6 @@ namespace SajatOnkiszolgalo
             segitseg.lblPillanat.Text = "Kérem, várjon egy pillanatot.\r\nMunkatársunk hamarosan megérkezik.\r\n";
             MagyarIdoVan = true;
         }
-
-        private void btnAngol_Click(object sender, EventArgs e)
-        {
-            Angol();
-        }
-
         private void Angol()
         {
             btnAngol.BorderColor = Color.Cyan;
@@ -139,6 +136,9 @@ namespace SajatOnkiszolgalo
             segitseg.lblPillanat.Text = "Please wait a moment.\r\nOur workmate will arrive soon.\r\n";
             MagyarIdoVan = false;
         }
+        
+
+        
 
         private void Ido_Tick(object sender, EventArgs e)
         {
@@ -182,7 +182,7 @@ namespace SajatOnkiszolgalo
             lbNevSzeles = lbNev.Width / 14;
         }
 
-        public void NincsDolgozo()
+        public void DolgozoNullaz()
         {
             try
             {
@@ -204,19 +204,13 @@ namespace SajatOnkiszolgalo
 
         private void AdatbazisEllenorzes_Tick(object sender, EventArgs e)
         {
-
-            lbAr.SelectedIndex = kivalasztottTermek;
-            lbNev.SelectedIndex = kivalasztottTermek;
             DolgozoEllenorzo();
             if (vanDolgozo == 0)
             {
-                dolgozoi.ListboxFrissit();
                 ListboxDeklaralas();
+                dolgozoi.ListboxFrissit();
                 JelenlegiTermekBeallitas();
             }
-            lbAr.SelectedIndex = kivalasztottTermek;
-            lbNev.SelectedIndex = kivalasztottTermek;
-            GorgessLe();
         }
 
         private void DolgozoEllenorzo()
@@ -238,7 +232,7 @@ namespace SajatOnkiszolgalo
 
                     dolgozo = new frmDolgozo(dolgozoNev, this, adatbazis);
                     dolgozo.ShowDialog();
-                    NincsDolgozo();
+                    DolgozoNullaz();
                 }
                 adatbazis.Conn.Close();
 
@@ -319,7 +313,6 @@ namespace SajatOnkiszolgalo
         }
         public void ListboxDeklaralas()
         {
-
             try
             {
                 adatbazis.Conn.Open();
@@ -377,10 +370,8 @@ namespace SajatOnkiszolgalo
                         else
                         {
                             lblOssz.Text = $"In all: {osszesen:N0}Ft";
-
                         }
-                        
-
+                        GorgessLe();
                     }
                 }
                 else
@@ -471,7 +462,7 @@ namespace SajatOnkiszolgalo
             try
             {
                 adatbazis.Conn.Open();
-                string sqlJelenlegi = $"SELECT a.nev, a.mennyiseg, am.mertekegyseg, v.id, a.gyumolcszoldseg, v.termekDarab FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE a.nev LIKE '%{kivalasztottNev}%' AND p.vonalkod_szam = '{randomSzam}';";
+                string sqlJelenlegi = $"SELECT a.nev, a.mennyiseg, am.mertekegyseg, v.id, a.gyumolcszoldseg, v.termekDarab, a.kep FROM vasarlok as v INNER JOIN arucikkek as a ON v.arucikkekID = a.aruid INNER JOIN aru_mertekegyseg AS am ON a.mertekegyseg_id = am.id INNER JOIN pultok as p ON v.pultokID = p.id WHERE a.nev LIKE '%{kivalasztottNev}%' AND p.vonalkod_szam = '{randomSzam}';";
                 var parancsJelenlegi = new MySqlCommand(sqlJelenlegi, adatbazis.Conn);
                 var olvasoJelenlegi = parancsJelenlegi.ExecuteReader();
                 if (olvasoJelenlegi.HasRows)
@@ -493,7 +484,7 @@ namespace SajatOnkiszolgalo
                     else
                     {
                         lblTermek.Text = $"{jelenlegiNev} {jelenlegiMennyiseg}{jelenlegiMertekegyseg}";
-                        pbTermek.Image = Image.FromFile(Path.Combine(eleresiUtvonal, $@"kepek\{jelenlegiNev}.jpg"));
+                        pbTermek.Image = ByteKepbe(kep);
                         adatbazis.Conn.Close();
                     }
 
@@ -518,6 +509,7 @@ namespace SajatOnkiszolgalo
                 kivalasztottTermek = lbAr.SelectedIndex;
                 lbNev.SelectedIndex = kivalasztottTermek;
             }
+          
         }
 
         private void btnKilepes_Click(object sender, EventArgs e)

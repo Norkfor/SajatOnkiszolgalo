@@ -245,11 +245,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
-    <Compile Include="DolgozoiFelulet.cs">
+    <Compile Include="KezeloPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DolgozoiFelulet.Designer.cs">
-      <DependentUpon>DolgozoiFelulet.cs</DependentUpon>
+    <Compile Include="KezeloPanel.Designer.cs">
+      <DependentUpon>KezeloPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="KeziBevitel.cs">
       <SubType>Form</SubType>
@@ -281,11 +281,11 @@
     <Compile Include="Onkiszolgalo.Designer.cs">
       <DependentUpon>Onkiszolgalo.cs</DependentUpon>
     </Compile>
-    <Compile Include="MunkaFelulet.cs">
+    <Compile Include="DolgozoiFelulet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MunkaFelulet.Designer.cs">
-      <DependentUpon>MunkaFelulet.cs</DependentUpon>
+    <Compile Include="DolgozoiFelulet.Designer.cs">
+      <DependentUpon>DolgozoiFelulet.cs</DependentUpon>
     </Compile>
     <Compile Include="Osszegzes.cs">
       <SubType>Form</SubType>
@@ -315,24 +315,29 @@
     </Compile>
     <EmbeddedResource Include="KeziBevitel.resx">
       <DependentUpon>KeziBevitel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="KoszonjukVasarlas.resx">
       <DependentUpon>KoszonjukVasarlas.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MennyisegKivalasztas.resx">
       <DependentUpon>MennyisegKivalasztas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MunkaFelulet.resx">
-      <DependentUpon>MunkaFelulet.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DolgozoiFelulet.resx">
       <DependentUpon>DolgozoiFelulet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KezeloPanel.resx">
+      <DependentUpon>KezeloPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NincsTermek.resx">
       <DependentUpon>NincsTermek.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Onkiszolgalo.resx">
       <DependentUpon>Onkiszolgalo.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Osszegzes.resx">
       <DependentUpon>Osszegzes.cs</DependentUpon>
